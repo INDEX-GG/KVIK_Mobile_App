@@ -1,14 +1,14 @@
 import React, { FC } from 'react';
 import { useTextUIStyles } from './style';
-import { IAdditionalFieldsItem, ITextAdditionalFields } from '../../models/IAdditionalFieldsModel';
+import { ITextUIProps } from '../../models/IAdditionalFieldsModel';
 import { TextInput, View } from 'react-native';
 import { Controller } from 'react-hook-form';
 import { useTextUI } from './useTextUI';
 import UbuntuTextUI from '../UbuntuTextUI/UbuntuTextUI';
 
-const TextUI: FC<IAdditionalFieldsItem & ITextAdditionalFields> = (props) => {
-  const styles = useTextUIStyles();
-  const {title, alias} = props;
+const TextUI: FC<ITextUIProps> = (props) => {
+  const {title, alias, customStyle, textNativeProps = {}} = props;
+  const styles = customStyle ? customStyle : useTextUIStyles();
   const {
     control,
     handleChangeText,
@@ -31,6 +31,7 @@ const TextUI: FC<IAdditionalFieldsItem & ITextAdditionalFields> = (props) => {
             placeholder={title}
             style={styles.inputContainer}
             placeholderTextColor={styles.inputColor.color}
+            {...textNativeProps}
           />
         </View>
       )}

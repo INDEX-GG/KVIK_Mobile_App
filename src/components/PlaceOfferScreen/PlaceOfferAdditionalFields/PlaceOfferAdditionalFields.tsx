@@ -11,9 +11,10 @@ const PlaceOfferAdditionalFields = () => {
   const { additionFields, isAdditionFieldsArray, methods } =
     usePlaceOfferAdditionalFields();
   return (
-    <ScreenScroll scroll={true}>
+    <ScreenScroll scroll={true} customBackground={'#2C2C2C'}>
       <FormProvider {...methods}>
         <ScrollView style={styles.container}>
+          <PlaceOfferDefaultFields/>
           {isAdditionFieldsArray ? (
             <>
               {additionFields.map((additionalItem) => (
@@ -24,7 +25,6 @@ const PlaceOfferAdditionalFields = () => {
               ))}
             </>
           ) : null}
-          <PlaceOfferDefaultFields/>
         </ScrollView>
       </FormProvider>
     </ScreenScroll>
