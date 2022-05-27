@@ -8,20 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* KVIKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* KVIKTests.m */; };
-		057C652BAF424D09A6B5E37F /* Ubuntu-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7C8BD198FB3A4B58B9079CFD /* Ubuntu-Light.otf */; };
-		0EDFAFA83F6443C49F7B826F /* Ubuntu-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85E434737DC14CD6B4CE86CF /* Ubuntu-BoldItalic.otf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		225B197B2840C45A0069E197 /* Ubuntu-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F68021D1A29B40339D80C3AF /* Ubuntu-Bold.otf */; };
+		225B197C2840C45A0069E197 /* Ubuntu-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = B7F0C7F1FA104E648E38F5D9 /* Ubuntu-Medium.otf */; };
+		225B197D2840C45A0069E197 /* Ubuntu-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 04E1BA3898844713B02E3D5A /* Ubuntu-Regular.otf */; };
+		225B197E2840C45A0069E197 /* Ubuntu-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85E434737DC14CD6B4CE86CF /* Ubuntu-BoldItalic.otf */; };
+		225B197F2840C45A0069E197 /* Ubuntu-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 585E28991D4C4E53980CD7C3 /* Ubuntu-Italic.otf */; };
+		225B19802840C45A0069E197 /* Ubuntu-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7C8BD198FB3A4B58B9079CFD /* Ubuntu-Light.otf */; };
+		225B19812840C45A0069E197 /* Ubuntu-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = FCB1224D45524968A373FA0B /* Ubuntu-LightItalic.otf */; };
+		225B19822840C45A0069E197 /* Ubuntu-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A70ACB857DA344C58F48A7DE /* Ubuntu-MediumItalic.otf */; };
 		3424ECFA4A90372A7C65C820 /* libPods-KVIK-KVIKTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D730D0C938A6A39B8C2A12 /* libPods-KVIK-KVIKTests.a */; };
-		49D17024C6BB4E05A651FE1F /* Ubuntu-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 585E28991D4C4E53980CD7C3 /* Ubuntu-Italic.otf */; };
-		5440C12E283F58AC00433CF9 /* Ubuntu-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F68021D1A29B40339D80C3AF /* Ubuntu-Bold.otf */; };
-		5440C12F283F58CB00433CF9 /* Ubuntu-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = B7F0C7F1FA104E648E38F5D9 /* Ubuntu-Medium.otf */; };
-		5440C130283F58D900433CF9 /* Ubuntu-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 04E1BA3898844713B02E3D5A /* Ubuntu-Regular.otf */; };
 		5A592E0EE6A967458E28F815 /* libPods-KVIK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C74EE7BB3B6BF0B7E1184146 /* libPods-KVIK.a */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		833AA57CAA704ADC9356AAB8 /* Ubuntu-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = FCB1224D45524968A373FA0B /* Ubuntu-LightItalic.otf */; };
-		E1D5125BD19D4471AD0132C2 /* Ubuntu-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A70ACB857DA344C58F48A7DE /* Ubuntu-MediumItalic.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -318,16 +316,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5440C130283F58D900433CF9 /* Ubuntu-Regular.otf in Resources */,
-				5440C12F283F58CB00433CF9 /* Ubuntu-Medium.otf in Resources */,
-				5440C12E283F58AC00433CF9 /* Ubuntu-Bold.otf in Resources */,
-				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
-				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				0EDFAFA83F6443C49F7B826F /* Ubuntu-BoldItalic.otf in Resources */,
-				49D17024C6BB4E05A651FE1F /* Ubuntu-Italic.otf in Resources */,
-				057C652BAF424D09A6B5E37F /* Ubuntu-Light.otf in Resources */,
-				833AA57CAA704ADC9356AAB8 /* Ubuntu-LightItalic.otf in Resources */,
-				E1D5125BD19D4471AD0132C2 /* Ubuntu-MediumItalic.otf in Resources */,
+				225B197B2840C45A0069E197 /* Ubuntu-Bold.otf in Resources */,
+				225B197C2840C45A0069E197 /* Ubuntu-Medium.otf in Resources */,
+				225B197D2840C45A0069E197 /* Ubuntu-Regular.otf in Resources */,
+				225B197E2840C45A0069E197 /* Ubuntu-BoldItalic.otf in Resources */,
+				225B197F2840C45A0069E197 /* Ubuntu-Italic.otf in Resources */,
+				225B19802840C45A0069E197 /* Ubuntu-Light.otf in Resources */,
+				225B19812840C45A0069E197 /* Ubuntu-LightItalic.otf in Resources */,
+				225B19822840C45A0069E197 /* Ubuntu-MediumItalic.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

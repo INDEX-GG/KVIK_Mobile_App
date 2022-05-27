@@ -6,11 +6,12 @@ const CardAdItemStyles = () => {
   const { theme, isDark } = useCurrentTheme();
   const { isAndroid } = useDevice();
 
+
   return StyleSheet.create({
     item: {
       width: '48%',
       minHeight: 240,
-      backgroundColor: theme.colorBottomTab.color,
+      backgroundColor: isDark ? '#000' : '#FFF',
       marginBottom: 15,
       marginRight: 15,
       overflow: isAndroid ? 'hidden' : 'visible',

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { useCardAdPriceStyles } from './style';
-import RobotoText from '../../../../UI/RobotoText';
 import { ToRubles } from '../../../../services/services';
+import UbuntuTextUI from "../../../../UI/UbuntuTextUI/UbuntuTextUI";
 
 interface ICardAdPriceProps {
   price: string;
@@ -11,9 +11,9 @@ const CardAdPrice: FC<ICardAdPriceProps> = ({ price }) => {
   const styles = useCardAdPriceStyles();
 
   return (
-    <RobotoText weight="b" style={styles.price}>
+    <UbuntuTextUI fontWeight={700} textProps={{style: styles.price}}>
       {ToRubles(price)}
-    </RobotoText>
+    </UbuntuTextUI>
   );
 };
 

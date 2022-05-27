@@ -3,6 +3,7 @@ import { TouchableOpacity, View } from 'react-native';
 import { CategorySwiperPress, SearchScreenCategory } from './types';
 import RobotoText from '../../../UI/RobotoText';
 import { CategorySwiperStyles } from './styles';
+import UbuntuTextUI from "../../../UI/UbuntuTextUI/UbuntuTextUI";
 
 interface CategorySwiperItemProps {
   item: SearchScreenCategory;
@@ -31,9 +32,9 @@ const CategorySwiperItem: FC<CategorySwiperItemProps> = ({
         marginRight: isLast ? styles.itemLast.marginRight : 12,
       }}
     >
-      <RobotoText weight="b" style={styles.title}>
+      <UbuntuTextUI fontWeight={700} textProps={{style: styles.title}}>
         {title}
-      </RobotoText>
+      </UbuntuTextUI>
       <View>
         <CurrentIcon style={styles.icon} />
       </View>

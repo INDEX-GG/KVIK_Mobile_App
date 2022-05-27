@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { View } from 'react-native';
-import CardSort from './CardSort';
+import CardSort from '../../../assets/CardSort.svg'
 import CardView from './CardView';
 import { CardStyle } from './style';
 import { SortState, SortStateFunction } from './types';

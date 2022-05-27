@@ -3,12 +3,12 @@ import { useCurrentTheme } from '../../../../hooks/useTheme';
 import { useAdaptiveFont } from '../../../../hooks/useAdaptiveFont';
 
 const CardAdTitleStyles = () => {
-  const { theme } = useCurrentTheme();
+  const { isDark } = useCurrentTheme();
   const fontSize = useAdaptiveFont();
 
   return StyleSheet.create({
     title: {
-      color: theme.color2c2c2cToFff.color,
+      color: isDark ? '#FFF' : '#000',
       fontSize: fontSize.sm,
       fontWeight: 'bold',
       lineHeight: 14,

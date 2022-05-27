@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, {FC, useMemo, useState} from 'react';
 import { View, Pressable, Text } from 'react-native';
 import { IAdCardModel } from '../../../models/IAdCardModel';
 import { useCardAdItemStyles } from './style';
@@ -17,16 +17,16 @@ interface CardAdItemProps {
 const CardAdItem: FC<CardAdItemProps> = ({ adItem }) => {
   const styles = useCardAdItemStyles();
   const { pushTo } = useRouter();
+  const [ isActive, setIsActive ] = useState(false);
 
   const isPhoto = useMemo(() => !!adItem?.post_photo_v2, [adItem]);
 
   const handlePressAd = () => {
-    pushTo('LocationSearch')();
+    pushTo('Product')();
   };
 
   return (
     <View style={styles.item}>
-      <CardAdLike />
       {isPhoto ? (
         <CardAdPhoto
           photos={adItem.post_photo_v2}
@@ -35,10 +35,11 @@ const CardAdItem: FC<CardAdItemProps> = ({ adItem }) => {
         />
       ) : (
         <View>
-          <Text>Фото не найденно</Text>
+          <Text>Фото не найдено</Text>
         </View>
       )}
       <Pressable style={styles.text} onPress={handlePressAd}>
+        <CardAdLike isActive={isActive} />
         <CardAdPrice price={adItem.price} />
         <CardAdTitle title={adItem.title} />
         <CardAdAddress address={adItem.address} />

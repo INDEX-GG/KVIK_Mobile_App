@@ -2,11 +2,11 @@ import { StyleSheet } from 'react-native';
 import { useCurrentTheme } from '../../hooks/useTheme';
 
 export const MainScreenStyle = () => {
-  const { theme } = useCurrentTheme();
+  const { isDark } = useCurrentTheme();
 
   return StyleSheet.create({
     tabBarStyle: {
-      backgroundColor: theme.colorBottomTab.color,
+      backgroundColor: isDark ? '#585858' : '#FFF',
       borderTopWidth: 0,
       shadowColor: '#000',
       shadowOffset: { width: 1, height: 1 },
@@ -15,7 +15,7 @@ export const MainScreenStyle = () => {
       elevation: 5,
     },
     headerStyle: {
-      backgroundColor: theme.colorBottomTab.color,
+      backgroundColor: isDark ? '#585858' : '#FFF',
     },
     tabBarItemStyle: {
       display: 'flex',

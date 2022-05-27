@@ -3,12 +3,12 @@ import { useCurrentTheme } from '../../../../hooks/useTheme';
 import { useAdaptiveFont } from '../../../../hooks/useAdaptiveFont';
 
 const CardAdPriceStyles = () => {
-  const { theme } = useCurrentTheme();
+  const { isDark } = useCurrentTheme();
   const fontSize = useAdaptiveFont();
 
   return StyleSheet.create({
     price: {
-      color: theme.color2c2c2cToFff.color,
+      color: isDark ? '#FFF' : '#000',
       fontSize: fontSize.Msm,
       fontWeight: 'bold',
       lineHeight: 21,
