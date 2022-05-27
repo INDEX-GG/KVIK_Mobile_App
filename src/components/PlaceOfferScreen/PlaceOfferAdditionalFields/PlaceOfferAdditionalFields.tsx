@@ -5,6 +5,7 @@ import { usePlaceOfferAdditionalFieldsStyles } from './style';
 import { usePlaceOfferAdditionalFields } from './usePlaceOfferAdditionalFields';
 import AdditionFieldsItem from '../../AnyScreen/AdditionalFields/AdditionFieldsItem/AdditionFieldsItem';
 import { FormProvider } from 'react-hook-form';
+import PlaceOfferDefaultFields from "../PlaceOfferDefaultFields/PlaceOfferDefaultFields";
 
 const PlaceOfferAdditionalFields = () => {
   const { additionFields, isAdditionFieldsArray, methods } =
@@ -23,6 +24,7 @@ const PlaceOfferAdditionalFields = () => {
               ))}
             </>
           ) : null}
+          <PlaceOfferDefaultFields/>
         </ScrollView>
       </FormProvider>
     </ScreenScroll>
