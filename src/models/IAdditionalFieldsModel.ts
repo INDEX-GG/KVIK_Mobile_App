@@ -1,3 +1,5 @@
+import { TextInputProps } from "react-native";
+
 export type PlaceOfferAdditionalFields =
   | 'text_list'
   | 'number'
@@ -36,7 +38,7 @@ export interface ITextNumberAdditionalFields {
   number_step: {};
   number_unit_of_measure: string;
   number_version: 'int' | 'float';
-  placeholder: ''
+  placeholder: string
 }
 
 export interface ITextAdditionalFields {
@@ -69,15 +71,38 @@ export interface IAdditionalFieldsItem {
   };
 }
 
-export type IPeriodUIProps = ICheckListUIProps
+interface ICheckBoxBooleanUI {
+  alias: string;
+  title: string;
+}
 
 export type ITextListIsCheckList = {isCheckList?: boolean}
 export type ITextListIsPeriod = {isPeriod?: boolean}
 export type ITextListIsTime = {isTime?: boolean}
+export type ITextCustomStyles = {
+  customStyle?: {
+    container: {},
+    label: {},
+    inputContainer: {},
+    inputColor: {
+      color: string;
+    }
+  },
+  textNativeProps?: TextInputProps,
+}
+interface ICheckboxBooleanDetails {
+  isVisibleBorderBottom?: boolean;
+}
+
+export type ITextUIProps = IAdditionalFieldsItem & ITextAdditionalFields & ITextCustomStyles
+
+export type ITextNumberUIProps = IAdditionalFieldsItem & ITextNumberAdditionalFields & ITextCustomStyles
+
+export type ICheckBoxBooleanUIProps = ICheckBoxBooleanUI & ICheckboxBooleanDetails
+
+export type IPeriodUIProps = ICheckListUIProps
 
 export type ICheckListUIProps = IAdditionalFieldsItem & ICheckListAdditionalFields
-
-export type ITextNumberUIProps = IAdditionalFieldsItem & ITextNumberAdditionalFields
 
 export type ITextListUIProps = ITextListAdditionalFields &
   IAdditionalFieldsItem & ITextListIsCheckList & ITextListIsPeriod & ITextListIsTime;

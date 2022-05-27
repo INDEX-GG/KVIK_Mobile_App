@@ -3,17 +3,15 @@ import { TextInput, View } from 'react-native';
 import {
   ITextNumberUIProps,
 } from '../../models/IAdditionalFieldsModel';
-import { useTextUIStyles } from './../TextUI/style';
+import { useTextUIStyles } from '../TextUI/style';
 import { useTextNumber } from './useTextNumberUI';
 import { Controller } from 'react-hook-form';
 import UbuntuTextUI from '../UbuntuTextUI/UbuntuTextUI';
 
 const TextNumberUI: FC<ITextNumberUIProps> = (props) => {
-  const styles = useTextUIStyles();
-  const {alias, default_value} = props;
-
+  const {alias, default_value, customStyle, textNativeProps = {}} = props;
+  const styles = customStyle ? customStyle : useTextUIStyles();
   const { control, handleChangeText, placeholderTitle } = useTextNumber(props);
-  console.log(123);
 
   return (
     <Controller
@@ -34,6 +32,7 @@ const TextNumberUI: FC<ITextNumberUIProps> = (props) => {
             placeholder={placeholderTitle}
             placeholderTextColor={styles.inputColor.color}
             style={styles.inputContainer}
+            {...textNativeProps}
           />
         </View>
       )}
