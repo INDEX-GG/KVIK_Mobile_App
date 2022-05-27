@@ -58,18 +58,6 @@ export const lightTheme = {
       color: '#FFFFFF',
     },
   },
-  Input: {
-    color: '#2C2C2C',
-    backgroundColor: '#FFFFFF',
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderRadius: 8,
-    borderColor: '#5A5A5A',
-    elevation: 0,
-    paddingLeft: 8,
-    paddingHorizontal: 0,
-    fonSize: 14,
-  },
 };
 
 export const darkTheme = {
@@ -131,17 +119,5 @@ export const darkTheme = {
     titleStyle: {
       color: 'red',
     },
-  },
-  Input: {
-    color: '#FFFFFF',
-    backgroundColor: '#2C2C2C',
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderRadius: 8,
-    borderColor: '#FFFFFF',
-    elevation: 0,
-    paddingLeft: 8,
-    paddingHorizontal: 0,
-    fonSize: 14,
   },
 };

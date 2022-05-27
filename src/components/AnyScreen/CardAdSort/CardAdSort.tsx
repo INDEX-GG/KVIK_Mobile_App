@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import DropDown from '../../../UI/DropDownUI/DropDownUI';
 import { TouchableOpacity, View } from 'react-native';
-import RobotoText from '../../../UI/RobotoText';
 import CardSort from '../../../assets/CardSort.svg';
 import { useCardAdSortStyles } from './style';
 import { useCardAdSort } from './useCardAdSort';
 import { IAdsSort } from '../../../types/reducersTypes';
+import UbuntuTextUI from "../../../UI/UbuntuTextUI/UbuntuTextUI";
 
 const sortData: IAdsSort[] = [
   { title: 'По умолчанию', value: 'default' },
@@ -34,9 +34,9 @@ const CardAdSort: FC<ICardAdSortProps> = ({ sortTitle }) => {
         <View style={styles.iconBox}>
           <CardSort style={styles.icon as {}} />
         </View>
-        <RobotoText weight="r" style={styles.text}>
+        <UbuntuTextUI fontWeight={500} textProps={{style: styles.text}}>
           {sortTitle}
-        </RobotoText>
+        </UbuntuTextUI>
       </TouchableOpacity>
     </DropDown>
   );

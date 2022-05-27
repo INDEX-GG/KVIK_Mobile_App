@@ -16,11 +16,11 @@ const CardAdSortStyles = () => {
       marginRight: 5,
     },
     icon: {
-      color: isDark ? '#FFFFFF' : '#8F8F8F',
+      color: isDark ? '#FFFFFF' : '#A4A4A4',
     },
     text: {
       fontSize: fontSize.little,
-      color: isDark ? '#FFFFFF' : '#8F8F8F',
+      color: isDark ? '#FFFFFF' : '#A4A4A4',
       fontWeight: '400',
       lineHeight: 16,
     },

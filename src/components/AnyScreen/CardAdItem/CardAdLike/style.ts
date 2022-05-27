@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native';
+import {useCurrentTheme} from "../../../../hooks/useTheme";
 
 const CardAdLikeStyles = () => {
+  const { isDark } = useCurrentTheme();
+
   return StyleSheet.create({
     likeIcon: {
       position: 'absolute',
@@ -8,6 +11,9 @@ const CardAdLikeStyles = () => {
       top: 5,
       zIndex: 10,
     },
+    likeIconSvg: {
+      color: isDark ? '#FFF': '#000',
+    }
   });
 };
 

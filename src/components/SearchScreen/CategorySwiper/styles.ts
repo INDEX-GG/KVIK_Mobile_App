@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 import { useCurrentTheme } from '../../../hooks/useTheme';
 
 export const CategorySwiperStyles = () => {
-  const { theme } = useCurrentTheme();
+  const { isDark } = useCurrentTheme();
 
   return StyleSheet.create({
     container: {
@@ -26,13 +26,13 @@ export const CategorySwiperStyles = () => {
       fontSize: 14,
       lineHeight: 16.41,
       marginBottom: 3,
-      color: theme.colorBlackToWhite.color,
+      color: isDark ? '#FFFFFF' : '#A4A4A4',
       textAlign: 'center',
       width: 92,
     },
     icon: {
       marginTop: 25,
-      color: theme.colorGrayToDark.color,
+      color: isDark ? '#5A8C89' : '#ABD0D1',
     },
   });
 };

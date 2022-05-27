@@ -2,7 +2,7 @@ import { useCurrentTheme } from '../../../hooks/useTheme';
 import { StyleSheet } from 'react-native';
 
 export const SearchStyle = () => {
-  const { theme } = useCurrentTheme();
+  const { isDark } = useCurrentTheme();
 
   const styles = StyleSheet.create({
     container: {
@@ -16,8 +16,15 @@ export const SearchStyle = () => {
       flexGrow: 1,
     },
     searchInput: {
-      borderBottomWidth: 0,
-      paddingHorizontal: 0,
+      paddingHorizontal: 8,
+      borderRadius: 20,
+      borderStyle: "solid",
+      borderWidth: 1,
+      borderColor: '#A4A4A4',
+      fontFamily: 'Ubuntu-Medium',
+      fontWeight: 'Medium',
+      fontSize: '14',
+      lineHeight: '16',
     },
     searchInputContainer: {
       paddingVertical: 0,
@@ -28,7 +35,7 @@ export const SearchStyle = () => {
       marginLeft: 15,
     },
     filterIcon: {
-      color: theme.colorMainToWhite.color,
+      color: '#00A0AB',
     },
     glass: {
       position: 'absolute',
@@ -36,7 +43,7 @@ export const SearchStyle = () => {
       top: 12,
     },
     glassIcon: {
-      color: theme.colorDark.color,
+      color: '#A4A4A4',
     },
   });
 

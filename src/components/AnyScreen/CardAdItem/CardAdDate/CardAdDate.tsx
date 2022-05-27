@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { useCardAdDateStyles } from './style';
-import RobotoText from '../../../../UI/RobotoText';
 import { ToRusDate } from '../../../../services/services';
+import UbuntuTextUI from "../../../../UI/UbuntuTextUI/UbuntuTextUI";
 
 interface ICardAdDateProps {
   date: string;
@@ -11,9 +11,9 @@ const CardAdDate: FC<ICardAdDateProps> = ({ date }) => {
   const styles = useCardAdDateStyles();
 
   return (
-    <RobotoText weight="b" style={styles.date}>
+    <UbuntuTextUI fontWeight={400} textProps={{style: styles.date}}>
       {ToRusDate(date)}
-    </RobotoText>
+    </UbuntuTextUI>
   );
 };
 
