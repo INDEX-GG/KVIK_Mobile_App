@@ -4,6 +4,7 @@ const PlaceOfferAdditionalFieldsStyles = () => {
   return StyleSheet.create({
     container: {
       marginTop: 15,
+      paddingHorizontal: 16,
     },
   });
 };

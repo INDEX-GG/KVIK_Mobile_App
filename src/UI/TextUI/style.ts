@@ -6,7 +6,6 @@ const TextUIStyles = () => {
   return StyleSheet.create({
     container: {
       position: 'relative',
-      marginHorizontal: 20,
     },
     inputContainer: {
       paddingVertical: 20,

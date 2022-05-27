@@ -8,7 +8,6 @@ const TextListUIStyles = () => {
 
   return StyleSheet.create({
     container: {
-      paddingHorizontal: 20,
       position: 'relative',
     },
     innerContainer: {

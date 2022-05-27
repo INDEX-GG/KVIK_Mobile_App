@@ -9,7 +9,6 @@ const PlaceOfferDefaultFieldsStyles = () => {
       marginBottom: 15,
       minHeight: 68,
       paddingVertical: 25,
-      marginHorizontal: 16,
       paddingHorizontal: 12,
       backgroundColor: isDark ? '#5A5A5A' : '#FFFFFF',
       borderRadius: 10,
