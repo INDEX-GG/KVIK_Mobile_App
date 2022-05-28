@@ -1,13 +1,16 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import PhotoPlaceholder from "./PhotoPlaceholder/PhotoPlaceholder";
-
+import { View } from 'react-native';
+import PhotoPlaceholder from './PhotoPlaceholder/PhotoPlaceholder';
+import Camera from '../../../AnyScreen/Camera/Camera';
+import { usePlaceOfferPhoto } from './usePlaceOfferPhoto';
 
 const PlaceOfferPhoto = () => {
+  const { visibleCamera, handleOpenCamera } = usePlaceOfferPhoto();
 
   return (
     <View>
-      <PhotoPlaceholder/>
+      <PhotoPlaceholder handleOpenCamera={handleOpenCamera} />
+      <Camera visible={visibleCamera} />
     </View>
   );
 };
