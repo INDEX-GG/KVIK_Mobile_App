@@ -1,20 +1,18 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 import { RNCamera } from 'react-native-camera';
-import { useCamera } from '../../../hooks/useCamera';
-import { Text, View, TouchableOpacity, StyleSheet, Image, Modal } from 'react-native';
+import { useCameraStore } from '../../../hooks/useReducerHook/useCameraStore';
+import { Text, View, TouchableOpacity, Modal } from 'react-native';
 import { useCameraStyles } from './style';
 
-interface ICameraProps {
-  visible: boolean;
-}
-
-const Camera: FC<ICameraProps> = ({ visible }) => {
+const Camera: FC = () => {
   const styles = useCameraStyles();
-  const { cameraState, photoArrays, handleChangeCamera, handleTakePicture } =
-    useCamera();
+  const { isCameraOpen, photosArray, handleChangeCamera, handleTakePicture } =
+    useCameraStore();
+
+  console.log(photosArray);
 
   return (
-    <Modal animationType="slide" visible={visible}>
+    <Modal animationType="slide" visible={isCameraOpen}>
       <View>
         <RNCamera
           ref={handleChangeCamera}
@@ -41,13 +39,12 @@ const Camera: FC<ICameraProps> = ({ visible }) => {
                   onPress={() => handleTakePicture(camera)}
                   style={styles.capture}
                 >
-                  <Text style={{ fontSize: 14 }}> SNAP </Text>
+                  <Text style={{ fontSize: 14 }}> ФОТО </Text>
                 </TouchableOpacity>
               </View>
             );
           }}
         </RNCamera>
-        <Image source={{ uri: photoArrays[0] }} />
       </View>
     </Modal>
   );

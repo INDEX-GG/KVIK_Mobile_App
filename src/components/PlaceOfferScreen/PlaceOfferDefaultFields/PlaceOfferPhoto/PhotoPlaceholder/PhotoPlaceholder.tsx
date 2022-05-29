@@ -1,18 +1,28 @@
-import React, { FC } from 'react';
+import React, {FC, useMemo} from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import UbuntuTextUI from '../../../../../UI/UbuntuTextUI/UbuntuTextUI';
 import CameraIcon from '../../../../../assets/CameraIcon.svg';
 import { usePhotoPlaceholderStyles } from './style';
+import {useCameraStore} from "../../../../../hooks/useReducerHook/useCameraStore";
 
 interface IPhotoPlaceholderPhoto {
-  handleOpenCamera: () => void;
+  size: 'small' | 'big';
 }
 
-const PhotoPlaceholder: FC<IPhotoPlaceholderPhoto> = ({ handleOpenCamera }) => {
+const PhotoPlaceholder: FC<IPhotoPlaceholderPhoto> = ({size}) => {
+  const { handleToggleVisibleCamera } = useCameraStore();
   const styles = usePhotoPlaceholderStyles();
+  const styleContainer = useMemo(
+    () => (size === 'small' ? styles.smallContainer : styles.container),
+    [styles, size]
+  );
+
   return (
     <>
-      <TouchableOpacity style={styles.container} onPress={handleOpenCamera}>
+      <TouchableOpacity
+        style={styleContainer}
+        onPress={handleToggleVisibleCamera}
+      >
         <View style={styles.iconContainer}>
           <CameraIcon />
         </View>
@@ -23,12 +33,6 @@ const PhotoPlaceholder: FC<IPhotoPlaceholderPhoto> = ({ handleOpenCamera }) => {
           Добавить фото
         </UbuntuTextUI>
       </TouchableOpacity>
-      <UbuntuTextUI
-        fontWeight={400}
-        textProps={{ style: styles.containerText }}
-      >
-        До 20 фотографий в формате JPG или PNG. Размер фото - до 25MB
-      </UbuntuTextUI>
     </>
   );
 };
