@@ -1,29 +1,21 @@
-import { useEffect, useState } from 'react';
-import { BackHandler } from 'react-native';
+import { useCameraStore } from '../../../../hooks/useReducerHook/useCameraStore';
+import { useEffect } from 'react';
 
 export const usePlaceOfferPhoto = () => {
-  const [visibleCamera, setVisibleCamera] = useState<boolean>(false);
-
-  const handleOpenCamera = () => {
-    setVisibleCamera((prevState) => !prevState);
-  };
-
-  const handleBackClick = () => {
-    console.log(123);
-    return true;
-  };
+  const {
+    isCameraOpen,
+    handleToggleVisibleCamera,
+    photosArray,
+    isPhotoArrayLength,
+  } = useCameraStore();
 
   useEffect(() => {
-    if (visibleCamera) {
-      BackHandler.addEventListener('hardwareBackPress', handleBackClick);
-    }
-    if (!visibleCamera) {
-      BackHandler.removeEventListener('hardwareBackPress', handleBackClick);
-    }
-  }, [visibleCamera]);
+    console.log(isCameraOpen);
+  }, [isCameraOpen]);
 
   return {
-    visibleCamera,
-    handleOpenCamera,
+    photosArray,
+    isPhotoArrayLength,
+    handleToggleVisibleCamera,
   };
 };
