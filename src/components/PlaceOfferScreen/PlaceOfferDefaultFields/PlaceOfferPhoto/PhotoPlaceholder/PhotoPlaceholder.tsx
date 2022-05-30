@@ -1,16 +1,15 @@
-import React, {FC, useMemo} from 'react';
+import React, { FC, useMemo } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import UbuntuTextUI from '../../../../../UI/UbuntuTextUI/UbuntuTextUI';
 import CameraIcon from '../../../../../assets/CameraIcon.svg';
 import { usePhotoPlaceholderStyles } from './style';
-import {useCameraStore} from "../../../../../hooks/useReducerHook/useCameraStore";
 
 interface IPhotoPlaceholderPhoto {
   size: 'small' | 'big';
+  onPress: () => void;
 }
 
-const PhotoPlaceholder: FC<IPhotoPlaceholderPhoto> = ({size}) => {
-  const { handleToggleVisibleCamera } = useCameraStore();
+const PhotoPlaceholder: FC<IPhotoPlaceholderPhoto> = ({ size, onPress }) => {
   const styles = usePhotoPlaceholderStyles();
   const styleContainer = useMemo(
     () => (size === 'small' ? styles.smallContainer : styles.container),
@@ -19,10 +18,7 @@ const PhotoPlaceholder: FC<IPhotoPlaceholderPhoto> = ({size}) => {
 
   return (
     <>
-      <TouchableOpacity
-        style={styleContainer}
-        onPress={handleToggleVisibleCamera}
-      >
+      <TouchableOpacity style={styleContainer} onPress={onPress}>
         <View style={styles.iconContainer}>
           <CameraIcon />
         </View>

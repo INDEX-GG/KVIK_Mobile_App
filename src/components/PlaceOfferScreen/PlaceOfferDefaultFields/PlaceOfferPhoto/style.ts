@@ -16,7 +16,7 @@ const PlaceOfferPhotoStyles = () => {
     containerText: {
       fontSize: 12,
       lineHeight: 14,
-      maxWidth: 232,
+      maxWidth: 282,
       color: isDark ? '#FFFFFF' : '#C7C7C7',
     },
   });

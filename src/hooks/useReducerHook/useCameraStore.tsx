@@ -8,7 +8,7 @@ export const useCameraStore = () => {
   const [cameraMethods, setCameraMethods] = useState<null | RNCamera>(null);
   const dispatch = useAppDispatch();
 
-  const { isCameraOpen, photosArray } = useAppSelector(
+  const { isCameraOpen, photosArray, fileArray } = useAppSelector(
     (state) => state.cameraReducer
   );
 
@@ -37,7 +37,19 @@ export const useCameraStore = () => {
     }
   };
 
+  const handleAddPhotoFileInArray = (photoFile: string) => {
+    dispatch(cameraSlice.actions.addFileInArray(photoFile));
+  };
+
+  const handleRemovePhotoFileInArray = (photoFile: string) => {
+    if (Array.isArray(fileArray)) {
+      const filterFilesArray = fileArray.filter((item) => item !== photoFile);
+      dispatch(cameraSlice.actions.removeFileInArray(filterFilesArray));
+    }
+  };
+
   return {
+    fileArray,
     isCameraOpen,
     photosArray,
     cameraMethods,
@@ -45,6 +57,8 @@ export const useCameraStore = () => {
     handleChangeCamera,
     isPhotoArrayLength,
     handleAddPhotoInArray,
+    handleRemovePhotoFileInArray,
+    handleAddPhotoFileInArray,
     handleToggleVisibleCamera,
   };
 };

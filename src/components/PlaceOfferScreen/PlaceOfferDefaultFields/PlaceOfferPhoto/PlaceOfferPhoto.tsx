@@ -6,20 +6,24 @@ import { usePlaceOfferPhoto } from './usePlaceOfferPhoto';
 import { usePlaceOfferPhotoStyles } from './style';
 import UbuntuTextUI from '../../../../UI/UbuntuTextUI/UbuntuTextUI';
 import PhotoList from './PhotoList/PhotoList';
+import RNCamera from '../../../RNCamera/RNCamera';
+import { useCameraStore } from '../../../../hooks/useReducerHook/useCameraStore';
 
 const PlaceOfferPhoto = () => {
   const styles = usePlaceOfferPhotoStyles();
   const { photosArray, isPhotoArrayLength } = usePlaceOfferPhoto();
+  const { handleToggleVisibleCamera } = useCameraStore();
 
   return (
     <View>
-      <View style={styles.container}>
-        {isPhotoArrayLength ? (
+      {/*<RNCamera />*/}
+      {isPhotoArrayLength ? (
+        <View style={styles.container}>
           <PhotoList photosArray={photosArray} />
-        ) : (
-          <PhotoPlaceholder size="big" />
-        )}
-      </View>
+        </View>
+      ) : (
+        <PhotoPlaceholder onPress={handleToggleVisibleCamera} size="big" />
+      )}
       <UbuntuTextUI
         fontWeight={400}
         textProps={{ style: styles.containerText }}
