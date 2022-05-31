@@ -5,7 +5,7 @@ import PictureItem from './PictureItem/PictureItem';
 import { useDevicePictureStyles } from './style';
 
 const DevicePicture = () => {
-  const { pictureArray, isPictureArray, keyExtractor } = useDevicePicture();
+  const { deviceGalleryImageArray, isPictureArray, keyExtractor } = useDevicePicture();
   const styles = useDevicePictureStyles();
 
   const renderItem = useCallback(
@@ -14,11 +14,11 @@ const DevicePicture = () => {
   );
 
   return (
-    <View>
+    <View style={styles.container}>
       {isPictureArray ? (
         <FlatList
-          contentContainerStyle={styles.container}
-          data={pictureArray}
+          contentContainerStyle={styles.listContainer}
+          data={deviceGalleryImageArray}
           renderItem={renderItem}
           keyExtractor={keyExtractor}
         />

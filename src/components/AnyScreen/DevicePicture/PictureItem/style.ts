@@ -8,7 +8,7 @@ const PictureItemStyles = () => {
       position: 'relative',
     },
     imageContainer: {
-      width: deviceWidth / 3,
+      width: deviceWidth / 3 - 10,
       height: 117,
     },
     checkBoxContainer: {

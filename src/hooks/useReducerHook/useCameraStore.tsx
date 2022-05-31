@@ -8,7 +8,7 @@ export const useCameraStore = () => {
   const [cameraMethods, setCameraMethods] = useState<null | RNCamera>(null);
   const dispatch = useAppDispatch();
 
-  const { isCameraOpen, photosArray, fileArray } = useAppSelector(
+  const { isCameraOpen, photosArray, fileArray, deviceGalleryImageArray } = useAppSelector(
     (state) => state.cameraReducer
   );
 
@@ -28,13 +28,12 @@ export const useCameraStore = () => {
   const handleAddPhotoInArray = (photoFile: string) =>
     dispatch(cameraSlice.actions.addPhotoArray(photoFile));
 
-  const handleTakePicture = async (camera: RNCamera) => {
-    if (camera) {
-      const options = { quality: 0.5, base64: true };
-      const data = await camera.takePictureAsync(options);
-      handleAddPhotoInArray(data.uri);
-      handleToggleVisibleCamera();
-    }
+  const handleChangeDeviceGallery = (photoFiles: string[]) => {
+    dispatch(cameraSlice.actions.addDeviceGalleryArray(photoFiles));
+  };
+
+  const handleChangeDeviceItem = (photoFiles: string) => {
+    dispatch(cameraSlice.actions.addDeviceGalleryItem(photoFiles));
   };
 
   const handleAddPhotoFileInArray = (photoFile: string) => {
@@ -48,6 +47,23 @@ export const useCameraStore = () => {
     }
   };
 
+  const handleTakePicture = (
+    camera: RNCamera,
+    successCallback?: () => void
+  ) => {
+    return async () => {
+      if (camera) {
+        const options = { quality: 0.5, base64: true };
+        const data = await camera.takePictureAsync(options);
+        handleAddPhotoFileInArray(data.uri);
+        handleChangeDeviceItem(data.uri);
+        if (successCallback) {
+          successCallback();
+        }
+      }
+    };
+  };
+
   return {
     fileArray,
     isCameraOpen,
@@ -57,6 +73,8 @@ export const useCameraStore = () => {
     handleChangeCamera,
     isPhotoArrayLength,
     handleAddPhotoInArray,
+    deviceGalleryImageArray,
+    handleChangeDeviceGallery,
     handleRemovePhotoFileInArray,
     handleAddPhotoFileInArray,
     handleToggleVisibleCamera,

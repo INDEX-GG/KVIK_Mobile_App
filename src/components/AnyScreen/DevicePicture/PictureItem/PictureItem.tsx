@@ -1,12 +1,11 @@
 import React, { FC } from 'react';
-import {Image, TouchableOpacity, View} from 'react-native';
-import { PhotoIdentifier } from '@react-native-community/cameraroll';
+import { Image, TouchableOpacity, View } from 'react-native';
 import { usePictureItem } from './usePictureItem';
 import { usePictureItemStyles } from './style';
 import CheckBoxUI from '../../../../UI/CheckBoxUI/CheckBoxUI';
 
 interface IPictureItemProps {
-  pictureItem: PhotoIdentifier;
+  pictureItem: string;
 }
 
 const PictureItem: FC<IPictureItemProps> = ({ pictureItem }) => {

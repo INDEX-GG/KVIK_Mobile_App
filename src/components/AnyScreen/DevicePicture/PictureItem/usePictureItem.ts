@@ -1,11 +1,10 @@
-import { PhotoIdentifier } from '@react-native-community/cameraroll';
 import { useMemo } from 'react';
 import { useCameraStore } from '../../../../hooks/useReducerHook/useCameraStore';
 
-export const usePictureItem = (pictureItem: PhotoIdentifier) => {
+export const usePictureItem = (pictureItem: string) => {
   const { fileArray, handleAddPhotoFileInArray, handleRemovePhotoFileInArray } =
     useCameraStore();
-  const photoUri = useMemo(() => pictureItem.node.image.uri, [pictureItem]);
+  const photoUri = useMemo(() => pictureItem, [pictureItem]);
   const isActive = useMemo(
     () => fileArray?.find((item) => item === photoUri),
     [fileArray]

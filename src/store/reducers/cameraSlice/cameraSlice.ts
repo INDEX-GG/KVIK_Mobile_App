@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RNCamera } from 'react-native-camera';
-import { useAppSelector } from '../../../hooks/useAppSelector';
 
 interface IInitialState {
   isCameraOpen: boolean;
   photosArray: string[];
   cameraMethods: RNCamera | any;
   fileArray: string[];
+  deviceGalleryImageArray: string[];
 }
 
 const initialState: IInitialState = {
@@ -14,6 +14,7 @@ const initialState: IInitialState = {
   cameraMethods: null,
   photosArray: [],
   fileArray: [],
+  deviceGalleryImageArray: [],
 };
 
 export const cameraSlice = createSlice({
@@ -35,6 +36,15 @@ export const cameraSlice = createSlice({
     },
     removeFileInArray(state, action: PayloadAction<string[]>) {
       state.fileArray = action.payload;
+    },
+    addDeviceGalleryArray(state, action: PayloadAction<string[]>) {
+      state.deviceGalleryImageArray = action.payload;
+    },
+    addDeviceGalleryItem(state, action: PayloadAction<string>) {
+      state.deviceGalleryImageArray = [
+        action.payload,
+        ...state.deviceGalleryImageArray,
+      ];
     },
   },
 });
