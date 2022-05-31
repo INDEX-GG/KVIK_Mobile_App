@@ -15,26 +15,27 @@ const CardAdPhoto: FC<ICardAdPhotoProps> = ({ photos, adId, onPress }) => {
   const styles = useCardAdPhotoStyles();
 
   const photosArr = useMemo(
-    () => dynamicPhotosArr([photos[0]], adId, 's', 5),
+    () => dynamicPhotosArr(photos, adId, 's', 5),
     [adId]
   );
 
-  // const remainingPhotosCount = useMemo(() => {
-  //   if (Array.isArray(photos) && Array.isArray(photosArr)) {
-  //     return photos.length - photosArr.length;
-  //   }
-  //   return 0;
-  // }, [photos, photosArr]);
+   const remainingPhotosCount = useMemo(() => {
+    if (Array.isArray(photos) && Array.isArray(photosArr)) {
+      return photos.length - photosArr.length;
+    }
+    return 0;
+  }, [photos, photosArr]);
+
 
   return (
     <View style={styles.img}>
-      {/*<CustomSwiper*/}
-      {/*  photos={photosArr}*/}
-      {/*  remainingPhotosCount={remainingPhotosCount}*/}
-      {/*  visibleLastSlide={true}*/}
-      {/*  onPressSlide={onPress}*/}
-      {/*/>*/}
-      <ImageUI photo={photosArr[0]} />
+      <CustomSwiper
+        photos={photosArr}
+        remainingPhotosCount={remainingPhotosCount}
+        visibleLastSlide={true}
+        onPressSlide={onPress}
+      />
+      {/*<ImageUI photo={photosArr[0]} />*/}
     </View>
   );
 };

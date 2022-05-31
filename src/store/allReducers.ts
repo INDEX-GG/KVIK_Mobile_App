@@ -4,6 +4,7 @@ import bottomSheetReducer from './reducers/bottomSheetSlice/bottomSheetSlice';
 import userReducer from './reducers/userSlice/userSlice';
 import tokenReducer from './reducers/tokenSlice/tokenSlice';
 import placeOfferReducer from './reducers/placeOfferSlice/placeOfferSlice';
+import productReducer  from './reducers/productSlice/productSlice'
 
 export const allReducers = {
   themeReducer,
@@ -12,4 +13,5 @@ export const allReducers = {
   placeOfferReducer,
   userReducer,
   tokenReducer,
+  productReducer,
 };
