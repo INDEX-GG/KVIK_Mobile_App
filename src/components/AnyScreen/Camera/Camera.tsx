@@ -3,6 +3,8 @@ import DevicePicture from '../DevicePicture/DevicePicture';
 import DeviceCamera from '../DeviceCamera/DeviceCamera';
 import ModalFullUI from '../../../UI/ModalFullUI/ModalFullUI';
 import { useCameraStore } from '../../../hooks/useReducerHook/useCameraStore';
+import {Text, View} from 'react-native';
+import { useCameraStyles } from './style';
 
 interface ICameraProps {
   isVisibleModal: boolean;
@@ -13,6 +15,7 @@ const Camera: FC<ICameraProps> = ({ isVisibleModal, onClose }) => {
   const { fileArray } = useCameraStore();
 
   const countFiles = useMemo(() => fileArray.length, [fileArray]);
+  const styles = useCameraStyles();
 
   return (
     <ModalFullUI
@@ -21,8 +24,10 @@ const Camera: FC<ICameraProps> = ({ isVisibleModal, onClose }) => {
       visibleButton={!!countFiles}
       textButton={`Выбрать ${countFiles}`}
     >
-      <DeviceCamera />
-      <DevicePicture />
+      <View style={styles.container}>
+        <DeviceCamera />
+        <DevicePicture isVisibleButton={!!countFiles} />
+      </View>
     </ModalFullUI>
   );
 };

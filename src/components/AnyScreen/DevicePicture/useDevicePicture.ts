@@ -1,10 +1,13 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import CameraRoll from '@react-native-community/cameraroll';
 import { useCameraStore } from '../../../hooks/useReducerHook/useCameraStore';
 
-export const useDevicePicture = () => {
-  const { handleChangeDeviceGallery, deviceGalleryImageArray } =
-    useCameraStore();
+export const useDevicePicture = (isVisibleButton: boolean) => {
+  const {
+    handleChangeDeviceGallery,
+    deviceGalleryImageArray,
+    deviceGalleryLength,
+  } = useCameraStore();
 
   const isPictureArray = useMemo(
     () =>
@@ -12,22 +15,39 @@ export const useDevicePicture = () => {
     [deviceGalleryImageArray]
   );
 
-  const keyExtractor = useCallback((item, index) => `${item}${index}`, []);
+  const innerContainer = useMemo(
+    () => ({ marginBottom: isVisibleButton ? 90 : 30 }),
+    [isVisibleButton]
+  );
+
+  const handleChangeGallery = (params: CameraRoll.GetPhotosParams) => {
+    CameraRoll.getPhotos(params).then((response) => {
+      const filterCameraPhoto = response.edges.map(
+        (item) => item.node.image.uri
+      );
+      handleChangeDeviceGallery(filterCameraPhoto);
+    });
+  };
+
+  const handleScrollFlatList = () => {
+    handleChangeGallery({
+      assetType: 'Photos',
+      first: 100,
+      after: `${deviceGalleryLength}`,
+    });
+  };
 
   useEffect(() => {
-    CameraRoll.getPhotos({ assetType: 'Photos', first: 100 }).then(
-      (response) => {
-        const filterCameraPhoto = response.edges
-          .filter((item) => item.node.group_name === 'Camera')
-          .map((item) => item.node.image.uri);
-        handleChangeDeviceGallery(filterCameraPhoto);
-      }
-    );
+    if (!isPictureArray) {
+      handleChangeGallery({ assetType: 'Photos', first: 100 });
+    }
   }, []);
 
   return {
+    deviceGalleryLength,
+    handleScrollFlatList,
+    innerContainer,
     deviceGalleryImageArray,
-    keyExtractor,
     isPictureArray,
   };
 };

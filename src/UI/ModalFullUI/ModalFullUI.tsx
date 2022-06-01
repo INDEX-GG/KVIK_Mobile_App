@@ -9,6 +9,7 @@ interface IModalFullUI {
   onClose: () => void;
   children: React.ReactChildren | React.ReactNode;
   textButton?: string;
+  onPressButton?: () => void;
   visibleButton?: boolean;
   visibleDefaultContainer?: boolean;
 }
@@ -40,11 +41,13 @@ const ModalFullUI: FC<IModalFullUI> = ({
           </View>
           {visibleButton && (
             <View style={styles.bottomButtonContainer}>
-              <ButtonUI text={textButton} />
+              <ButtonUI text={textButton} buttonProps={{ onPress: onClose }} />
             </View>
           )}
         </View>
-      ) : children}
+      ) : (
+        children
+      )}
     </Modal>
   );
 };

@@ -26,7 +26,7 @@ const PhotoPlaceholder: FC<IPhotoPlaceholderPhoto> = ({ size, onPress }) => {
           fontWeight={400}
           textProps={{ style: styles.containerText }}
         >
-          Добавить фото
+          добавить фото
         </UbuntuTextUI>
       </TouchableOpacity>
     </>

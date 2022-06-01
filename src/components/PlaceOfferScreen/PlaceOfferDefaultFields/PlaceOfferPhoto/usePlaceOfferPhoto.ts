@@ -1,8 +1,10 @@
 import { useCameraStore } from '../../../../hooks/useReducerHook/useCameraStore';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { usePlaceOfferStore } from '../../../../hooks/useReducerHook/usePlaceOfferStore';
 
 export const usePlaceOfferPhoto = () => {
-  const { photosArray, isPhotoArrayLength } = useCameraStore();
+  const { fileArray, isFilesArrayLength } = useCameraStore();
+  const { importantPhoto, handleChangeImportantPhoto } = usePlaceOfferStore();
 
   const [isVisiblePhotoFiles, setIsVisiblePhotoFiles] =
     useState<boolean>(false);
@@ -11,10 +13,24 @@ export const usePlaceOfferPhoto = () => {
     setIsVisiblePhotoFiles((prevState) => !prevState);
   };
 
+  useEffect(() => {
+    if (isFilesArrayLength && !importantPhoto) {
+      handleChangeImportantPhoto(fileArray[0])();
+      return;
+    }
+    if (isFilesArrayLength && importantPhoto) {
+      const findPhoto = fileArray.find((photo) => photo === importantPhoto);
+      if (!findPhoto) {
+        handleChangeImportantPhoto(fileArray[0])();
+        return;
+      }
+    }
+  }, [importantPhoto, fileArray]);
+
   return {
-    photosArray,
+    fileArray,
     isVisiblePhotoFiles,
-    isPhotoArrayLength,
+    isFilesArrayLength,
     handleToggleVisible,
   };
 };

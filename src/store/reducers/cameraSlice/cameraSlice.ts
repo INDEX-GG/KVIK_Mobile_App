@@ -3,18 +3,18 @@ import { RNCamera } from 'react-native-camera';
 
 interface IInitialState {
   isCameraOpen: boolean;
-  photosArray: string[];
   cameraMethods: RNCamera | any;
   fileArray: string[];
   deviceGalleryImageArray: string[];
+  deviceGalleryLength: number;
 }
 
 const initialState: IInitialState = {
   isCameraOpen: false,
   cameraMethods: null,
-  photosArray: [],
   fileArray: [],
   deviceGalleryImageArray: [],
+  deviceGalleryLength: 0,
 };
 
 export const cameraSlice = createSlice({
@@ -22,9 +22,6 @@ export const cameraSlice = createSlice({
   initialState,
   reducers: {
     reset: () => initialState,
-    addPhotoArray(state, action: PayloadAction<string>) {
-      state.photosArray = [...state.photosArray, action.payload];
-    },
     toggleCamera(state) {
       state.isCameraOpen = !state.isCameraOpen;
     },
@@ -38,7 +35,11 @@ export const cameraSlice = createSlice({
       state.fileArray = action.payload;
     },
     addDeviceGalleryArray(state, action: PayloadAction<string[]>) {
-      state.deviceGalleryImageArray = action.payload;
+      state.deviceGalleryImageArray = [
+        ...state.deviceGalleryImageArray,
+        ...action.payload,
+      ];
+      state.deviceGalleryLength += 100;
     },
     addDeviceGalleryItem(state, action: PayloadAction<string>) {
       state.deviceGalleryImageArray = [

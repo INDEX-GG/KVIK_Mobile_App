@@ -50,12 +50,15 @@ const DeviceFullScreenCamera: FC<IDeviceFullScreenCameraProps> = ({
           {({ camera }) => {
             return (
               <View style={styles.eventContainer}>
-                <View style={styles.imageContainer}>
+                <TouchableOpacity
+                  onPress={onClose}
+                  style={styles.imageContainer}
+                >
                   <Image
                     style={styles.image}
                     source={{ uri: photoPreviewUri }}
                   />
-                </View>
+                </TouchableOpacity>
                 <View style={styles.actionContainer}>
                   <TouchableOpacity
                     onPress={handleChangeLightningMode}

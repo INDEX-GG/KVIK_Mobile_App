@@ -1,19 +1,55 @@
 import React, { FC } from 'react';
-import { Image, TouchableOpacity } from 'react-native';
+import { Image, TouchableOpacity, View } from 'react-native';
 import { usePhotoItemStyles } from './style';
+import { IPhotoItemProps } from './types';
+import { usePhotoItem } from './usePhotoItem';
+import PhotoPlaceholder from '../PhotoPlaceholder/PhotoPlaceholder';
+import PhotoItemModal from '../PhotoItemModal/PhotoItemModal';
+import UbuntuTextUI from '../../../../../UI/UbuntuTextUI/UbuntuTextUI';
 
-interface IPhotoItemProps {
-  photo: string;
-  importantPhoto: string;
-  onPress: () => void;
-}
-
-const PhotoItem: FC<IPhotoItemProps> = ({ photo, importantPhoto, onPress }) => {
+const PhotoItem: FC<IPhotoItemProps> = ({ photo, onPressLastPhoto, isEditMode, onToggleEditMode }) => {
   const styles = usePhotoItemStyles();
+  const {
+    isLastPhoto,
+    handleToggleModal,
+    isVisibleModal,
+    isImportantPhoto,
+    handleChangeImportantPhoto,
+  } = usePhotoItem(photo);
   return (
-    <TouchableOpacity onPress={onPress} style={styles.photoContainer}>
-      <Image style={{ width: 81, height: 81 }} source={{ uri: photo }} />
-    </TouchableOpacity>
+    <>
+      <View style={styles.container}>
+        {isLastPhoto ? (
+          <View style={styles.photoContainer}>
+            <PhotoPlaceholder onPress={onPressLastPhoto} size="small" />
+          </View>
+        ) : (
+          <TouchableOpacity
+            onPress={handleToggleModal}
+            style={styles.photoContainer}
+          >
+            <Image style={styles.photo} source={{ uri: photo }} />
+            {isImportantPhoto && (
+              <View style={styles.importantContainer}>
+                <UbuntuTextUI
+                  fontWeight={700}
+                  textProps={{ style: styles.importantText }}
+                >
+                  Главное фото
+                </UbuntuTextUI>
+              </View>
+            )}
+          </TouchableOpacity>
+        )}
+      </View>
+      <PhotoItemModal
+        photo={photo}
+        isImportantPhoto={isImportantPhoto}
+        isVisibleModal={isVisibleModal}
+        handleChangeImportantPhoto={handleChangeImportantPhoto(photo)}
+        handleToggleModal={handleToggleModal}
+      />
+    </>
   );
 };
 

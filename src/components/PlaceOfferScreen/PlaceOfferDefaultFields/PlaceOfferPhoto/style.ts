@@ -10,7 +10,7 @@ const PlaceOfferPhotoStyles = () => {
       backgroundColor: isDark ? '#5A5A5A' : '#E9E9E9',
       borderRadius: 10,
       marginBottom: 15,
-      paddingVertical: 16,
+      paddingBottom: 16,
       paddingHorizontal: 18,
     },
     containerText: {

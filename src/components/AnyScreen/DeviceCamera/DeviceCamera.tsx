@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { useDeviceCameraStyles } from './style';
@@ -6,7 +6,7 @@ import CameraIcon from '../../../assets/CameraIcon.svg';
 import { useDeviceCamera } from './useDeviceCamera';
 import DeviceFullScreenCamera from '../DeviceFullScreenCamera/DeviceFullScreenCamera';
 
-const DeviceCamera = () => {
+const DeviceCamera: FC = () => {
   const styles = useDeviceCameraStyles();
   const { handleToggleVisibleCamera, isCameraOpen } = useDeviceCamera();
 

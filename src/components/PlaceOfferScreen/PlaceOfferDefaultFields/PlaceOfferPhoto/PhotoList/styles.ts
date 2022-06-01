@@ -2,10 +2,11 @@ import { StyleSheet } from 'react-native';
 
 const PhotoListStyles = () => {
   return StyleSheet.create({
-    container: {
+    container: {},
+    basketContainer: {
       display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'flex-start',
+      marginTop: 20,
+      alignItems: 'center',
     },
   });
 };

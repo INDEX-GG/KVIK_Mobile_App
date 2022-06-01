@@ -10,17 +10,20 @@ import PhotoList from './PhotoList/PhotoList';
 const PlaceOfferPhoto = () => {
   const styles = usePlaceOfferPhotoStyles();
   const {
-    photosArray,
-    isPhotoArrayLength,
+    fileArray,
+    isFilesArrayLength,
     isVisiblePhotoFiles,
     handleToggleVisible,
   } = usePlaceOfferPhoto();
 
   return (
     <View>
-      {isPhotoArrayLength ? (
+      {isFilesArrayLength ? (
         <View style={styles.container}>
-          <PhotoList photosArray={photosArray} />
+          <PhotoList
+            onPressPhotoPlaceholder={handleToggleVisible}
+            photosArray={fileArray}
+          />
         </View>
       ) : (
         <PhotoPlaceholder onPress={handleToggleVisible} size="big" />
