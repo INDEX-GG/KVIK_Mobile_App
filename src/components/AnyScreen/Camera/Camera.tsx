@@ -3,7 +3,7 @@ import DevicePicture from '../DevicePicture/DevicePicture';
 import DeviceCamera from '../DeviceCamera/DeviceCamera';
 import ModalFullUI from '../../../UI/ModalFullUI/ModalFullUI';
 import { useCameraStore } from '../../../hooks/useReducerHook/useCameraStore';
-import {Text, View} from 'react-native';
+import { View } from 'react-native';
 import { useCameraStyles } from './style';
 
 interface ICameraProps {

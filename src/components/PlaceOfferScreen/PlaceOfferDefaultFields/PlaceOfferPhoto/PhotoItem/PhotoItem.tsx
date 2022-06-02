@@ -6,30 +6,52 @@ import { usePhotoItem } from './usePhotoItem';
 import PhotoPlaceholder from '../PhotoPlaceholder/PhotoPlaceholder';
 import PhotoItemModal from '../PhotoItemModal/PhotoItemModal';
 import UbuntuTextUI from '../../../../../UI/UbuntuTextUI/UbuntuTextUI';
+import SuccessMarkIcon from '../../../../../assets/SuccesMark.svg';
 
-const PhotoItem: FC<IPhotoItemProps> = ({ photo, onPressLastPhoto, isEditMode, onToggleEditMode }) => {
+const PhotoItem: FC<IPhotoItemProps> = ({
+  photo,
+  deleteArray,
+  isDeleteMode,
+  onPressLastPhoto,
+  onToggleDeleteMode,
+  handleAddPhotoInDeleteArray,
+}) => {
   const styles = usePhotoItemStyles();
   const {
     isLastPhoto,
-    handleToggleModal,
+    isDeleteItem,
     isVisibleModal,
+    handlePressItem,
     isImportantPhoto,
+    isVisibleImportant,
+    handleToggleModal,
     handleChangeImportantPhoto,
-  } = usePhotoItem(photo);
+  } = usePhotoItem(
+    photo,
+    isDeleteMode,
+    deleteArray,
+    handleAddPhotoInDeleteArray
+  );
+
   return (
-    <>
-      <View style={styles.container}>
-        {isLastPhoto ? (
-          <View style={styles.photoContainer}>
-            <PhotoPlaceholder onPress={onPressLastPhoto} size="small" />
+    <View>
+      {isLastPhoto ? (
+        !isDeleteMode && (
+          <View style={styles.container}>
+            <View style={styles.photoContainer}>
+              <PhotoPlaceholder onPress={onPressLastPhoto} size="small" />
+            </View>
           </View>
-        ) : (
+        )
+      ) : (
+        <View style={styles.container}>
           <TouchableOpacity
-            onPress={handleToggleModal}
+            onPress={handlePressItem}
+            onLongPress={onToggleDeleteMode(photo)}
             style={styles.photoContainer}
           >
             <Image style={styles.photo} source={{ uri: photo }} />
-            {isImportantPhoto && (
+            {isVisibleImportant && (
               <View style={styles.importantContainer}>
                 <UbuntuTextUI
                   fontWeight={700}
@@ -39,9 +61,18 @@ const PhotoItem: FC<IPhotoItemProps> = ({ photo, onPressLastPhoto, isEditMode, o
                 </UbuntuTextUI>
               </View>
             )}
+            {isDeleteMode && (
+              <View style={styles.checkboxContainer}>
+                {isDeleteItem && (
+                  <View style={styles.iconContainer}>
+                    <SuccessMarkIcon />
+                  </View>
+                )}
+              </View>
+            )}
           </TouchableOpacity>
-        )}
-      </View>
+        </View>
+      )}
       <PhotoItemModal
         photo={photo}
         isImportantPhoto={isImportantPhoto}
@@ -49,7 +80,7 @@ const PhotoItem: FC<IPhotoItemProps> = ({ photo, onPressLastPhoto, isEditMode, o
         handleChangeImportantPhoto={handleChangeImportantPhoto(photo)}
         handleToggleModal={handleToggleModal}
       />
-    </>
+    </View>
   );
 };
 

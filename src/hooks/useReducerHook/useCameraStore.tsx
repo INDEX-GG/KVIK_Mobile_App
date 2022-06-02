@@ -8,9 +8,12 @@ import CameraRoll from '@react-native-community/cameraroll';
 export const useCameraStore = () => {
   const dispatch = useAppDispatch();
 
-  const { isCameraOpen, fileArray, deviceGalleryImageArray, deviceGalleryLength} = useAppSelector(
-    (state) => state.cameraReducer
-  );
+  const {
+    isCameraOpen,
+    fileArray,
+    deviceGalleryImageArray,
+    deviceGalleryLength,
+  } = useAppSelector((state) => state.cameraReducer);
 
   const isFilesArrayLength = useMemo(
     () => !!(Array.isArray(fileArray) && fileArray.length),
@@ -38,6 +41,10 @@ export const useCameraStore = () => {
       const filterFilesArray = fileArray.filter((item) => item !== photoFile);
       dispatch(cameraSlice.actions.removeFileInArray(filterFilesArray));
     }
+  };
+
+  const handleDeletePhotosInFileArray = (newFileArray: string[]) => {
+    dispatch(cameraSlice.actions.removeFileInArray(newFileArray));
   };
 
   const handleTakePicture = (
@@ -72,6 +79,7 @@ export const useCameraStore = () => {
     deviceGalleryImageArray,
     handleChangeDeviceGallery,
     handleRemovePhotoFileInArray,
+    handleDeletePhotosInFileArray,
     handleAddPhotoFileInArray,
     handleToggleVisibleCamera,
   };

@@ -1,9 +1,9 @@
 import React, { FC, useCallback } from 'react';
-import {FlatList, Text, TouchableOpacity, View} from 'react-native';
+import { FlatList, TouchableOpacity, View } from 'react-native';
 import PhotoItem from '../PhotoItem/PhotoItem';
 import { usePhotoListStyles } from './styles';
 import { usePhotoList } from './usePhotoList';
-import BacketIcon from '../../../../../assets/BacketIcon.svg';
+import BasketIcon from '../../../../../assets/BacketIcon.svg';
 
 interface IPhotoListProps {
   photosArray: string[];
@@ -15,19 +15,27 @@ const PhotoList: FC<IPhotoListProps> = ({
   onPressPhotoPlaceholder,
 }) => {
   const styles = usePhotoListStyles();
-  const { isEditMode, handleToggleEditMode } = usePhotoList();
+  const {
+    deleteArray,
+    isDeleteMode,
+    handleDeletePhotos,
+    handleToggleDeleteMode,
+    handleAddPhotoInDeleteArray,
+  } = usePhotoList();
 
   const renderItem = useCallback(
     ({ item }) => (
       <PhotoItem
         key={item}
         photo={item}
-        isEditMode={isEditMode}
-        onToggleEditMode={handleToggleEditMode}
+        isDeleteMode={isDeleteMode}
+        deleteArray={deleteArray}
+        handleAddPhotoInDeleteArray={handleAddPhotoInDeleteArray}
+        onToggleDeleteMode={handleToggleDeleteMode}
         onPressLastPhoto={onPressPhotoPlaceholder}
       />
     ),
-    []
+    [isDeleteMode, deleteArray]
   );
 
   return (
@@ -37,9 +45,12 @@ const PhotoList: FC<IPhotoListProps> = ({
         numColumns={3}
         renderItem={renderItem}
       />
-      {isEditMode && (
-        <TouchableOpacity style={styles.basketContainer}>
-          <BacketIcon />
+      {isDeleteMode && (
+        <TouchableOpacity
+          style={styles.basketContainer}
+          onPress={handleDeletePhotos}
+        >
+          <BasketIcon />
         </TouchableOpacity>
       )}
     </View>
