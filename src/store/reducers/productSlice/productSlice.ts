@@ -1,5 +1,6 @@
 import {IAdCardModel} from "../../../models/IAdCardModel";
 import { createSlice } from "@reduxjs/toolkit";
+import {fetchProductAd} from "./asyncAction";
 
 type InitialState = {
     activeProduct: IAdCardModel | null;
@@ -13,12 +14,13 @@ const initialState: InitialState = {
 export const productSlice = createSlice({
     name: 'product',
     initialState,
-    reducers: {
-        changeProduct: (state, {payload})  => {
+    reducers: {},
+    extraReducers (builder) {
+        builder.addCase(fetchProductAd.fulfilled, (state, {payload}) => {
             state.activeProduct = payload
-        },
+        })
+
     }
-})
+ })
 
 export default productSlice.reducer;
-export const { changeProduct } = productSlice.actions;

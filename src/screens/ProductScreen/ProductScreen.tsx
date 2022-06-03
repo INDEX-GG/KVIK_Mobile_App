@@ -6,8 +6,10 @@ import ButtonsHeaderProduct from "../../components/AnyScreen/CustomHeaders/Butto
 import { useProductScreenStyles } from './style';
 import ImageSwiperProduct from "./ImageSwiperProduct/ImageSwiperProduct";
 import InfoProduct from "./InfoProduct/InfoProduct";
-import CommunicationPhoneButton from "./CommunicationButtons/CommunicationPhoneButton/CommunicationPhoneButton";
 import CommunicationButtons from './CommunicationButtons/CommunicationButtons';
+import TransactionAdvantages from "./TransactionAdvantages/TransactionAdvantages";
+import ButtonBuy from "./ButtonBuy/ButtonBuy";
+import DescriptionProduct from "./DescriptionProduct/DescriptionProduct";
 
 const ProductScreen = () => {
   const styles = useProductScreenStyles();
@@ -21,7 +23,8 @@ const ProductScreen = () => {
       )
   }
 
-console.log(activeProduct)
+  console.log(activeProduct)
+  const advantage = ['delivery', 'safeTransaction'];
 
   return (
       <View style={styles.container}>
@@ -29,7 +32,9 @@ console.log(activeProduct)
           <ImageSwiperProduct photos={activeProduct.post_photo_v2} />
           <InfoProduct data={activeProduct}/>
           {activeProduct.manager_phone && <CommunicationButtons phone={activeProduct.manager_phone}/>}
-
+          <TransactionAdvantages advantages={advantage}/>
+          <ButtonBuy />
+          <DescriptionProduct address={activeProduct.address}/>
       </View>
   );
 

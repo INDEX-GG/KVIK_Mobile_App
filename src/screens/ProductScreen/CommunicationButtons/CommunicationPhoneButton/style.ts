@@ -5,7 +5,7 @@ const CommunicationPhoneButtonStyle = () => {
         button: {
             backgroundColor: '#00A0AB',
             paddingHorizontal: 32,
-            paddingVertical: 14,
+            paddingVertical: 10,
             borderRadius: 20,
             flexDirection: 'row',
             alignItems: "center",
