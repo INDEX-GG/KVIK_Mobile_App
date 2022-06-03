@@ -1,6 +1,6 @@
 import {StyleSheet} from "react-native";
 
-const CommunicationPhoneButtonStyle = () => {
+const CommunicationMessageButtonStyle = () => {
     return StyleSheet.create({
         button: {
             backgroundColor: '#00A0AB',
@@ -17,7 +17,10 @@ const CommunicationPhoneButtonStyle = () => {
             color: '#FFF',
             marginLeft: 8,
         },
+        icon: {
+            color: '#FFF'
+        }
     })
 }
 
-export const useCommunicationPhoneButtonStyle = () => CommunicationPhoneButtonStyle();
+export const useCommunicationMessageButtonStyle = () => CommunicationMessageButtonStyle();

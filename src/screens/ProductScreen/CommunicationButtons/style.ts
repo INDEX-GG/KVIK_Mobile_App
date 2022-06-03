@@ -2,8 +2,10 @@ import {StyleSheet} from "react-native";
 
 const CommunicationButtonsStyle = () => {
     return StyleSheet.create({
-        icon: {
-            color: '#FFF',
+        container: {
+            flexDirection: "row",
+            justifyContent: "space-around",
+            marginBottom: 5
         }
     })
 }

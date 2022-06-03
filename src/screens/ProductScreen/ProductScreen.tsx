@@ -7,6 +7,7 @@ import { useProductScreenStyles } from './style';
 import ImageSwiperProduct from "./ImageSwiperProduct/ImageSwiperProduct";
 import InfoProduct from "./InfoProduct/InfoProduct";
 import CommunicationPhoneButton from "./CommunicationButtons/CommunicationPhoneButton/CommunicationPhoneButton";
+import CommunicationButtons from './CommunicationButtons/CommunicationButtons';
 
 const ProductScreen = () => {
   const styles = useProductScreenStyles();
@@ -20,14 +21,15 @@ const ProductScreen = () => {
       )
   }
 
-
+console.log(activeProduct)
 
   return (
       <View style={styles.container}>
           <HeaderTab title={''} children={<ButtonsHeaderProduct />}/>
           <ImageSwiperProduct photos={activeProduct.post_photo_v2} />
           <InfoProduct data={activeProduct}/>
-          <CommunicationPhoneButton />
+          {activeProduct.manager_phone && <CommunicationButtons phone={activeProduct.manager_phone}/>}
+
       </View>
   );
 
