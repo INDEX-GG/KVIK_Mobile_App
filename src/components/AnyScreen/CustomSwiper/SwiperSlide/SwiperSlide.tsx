@@ -9,9 +9,9 @@ import ImageUI from '../../../../UI/ImageUI/ImageUI';
 interface ISliderSlide {
   photo: string;
   slideIndex: number;
-  lastSlideIndex: number;
-  remainingPhotosCount: number;
-  visibleLastSlide: boolean;
+  lastSlideIndex?: number;
+  remainingPhotosCount?: number;
+  visibleLastSlide?: boolean;
 }
 
 const SwiperSlide: FC<ISliderSlide> = ({
@@ -22,7 +22,11 @@ const SwiperSlide: FC<ISliderSlide> = ({
   visibleLastSlide,
 }) => {
   const styles = useSwiperSlideStyles();
+
   const isLastSlide = useMemo(() => {
+    if (!lastSlideIndex) {
+      return 0;
+    }
     if (!visibleLastSlide) {
       return false;
     }

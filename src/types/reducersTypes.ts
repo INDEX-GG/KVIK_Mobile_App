@@ -37,3 +37,4 @@ export interface IHomeAds {
   isUpdateAds: boolean;
   error: string;
 }
+

@@ -3,4 +3,6 @@ export interface HeaderTabProps {
   arrow?: boolean;
   resultKey?: string;
   dynamicFunction?: () => any;
+  children?: JSX.Element;
+  childrenStyles?: {};
 }
