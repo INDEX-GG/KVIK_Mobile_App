@@ -1,21 +1,18 @@
 import { StyleSheet } from 'react-native';
-import { useDevice } from '../../hooks/useDevice';
-import { useSize } from '../../hooks/useSize';
 
 const ModalUIStyles = () => {
-  const { deviceWidth, deviceHeight } = useSize();
-
   return StyleSheet.create({
     overlay: {
-      // backgroundColor: 'rgba(0, 0, 0, 0)',
-      zIndex: -1,
-      // width: deviceWidth,
-      // height: deviceHeight,
+      zIndex: 1,
+      padding: 0,
+      borderRadius: 10,
+      overflow: 'hidden',
+      backgroundColor: 'rgba(0, 0, 0, 0)',
     },
     backdrop: {
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
       position: 'absolute',
-      zIndex: -1,
-      backgroundColor: 'blue',
+      zIndex: 1,
     },
   });
 };

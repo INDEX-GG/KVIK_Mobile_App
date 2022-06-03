@@ -2,7 +2,10 @@ import { useAppSelector } from '../useAppSelector';
 import { useAppDispatch } from '../useAppDispatch';
 import { placeOfferSlice } from '../../store/reducers/placeOfferSlice/placeOfferSlice';
 import { IPlaceOfferCategoryItem } from '../../models/IPlaceOfferCategoryModel';
-import { IAdditionalFieldsFetchJSON, IAdditionalFieldsItem } from '../../models/IAdditionalFieldsModel';
+import {
+  IAdditionalFieldsFetchJSON,
+  IAdditionalFieldsItem,
+} from '../../models/IAdditionalFieldsModel';
 import { FieldValues, UseFormGetValues } from 'react-hook-form';
 import { getStringArrayInObjectArray } from '../../services/services';
 
@@ -15,15 +18,26 @@ export const usePlaceOfferStore = () => {
     additionFields,
     aliasName,
     lastJsonInfo,
+    importantPhoto,
   } = useAppSelector((state) => state.placeOfferReducer);
   const dispatch = useAppDispatch();
 
   const checkCategory = (category: string) => (category ? `,${category}` : '');
 
+  const handleChangeImportantPhoto = (photo: string) => {
+    return () => {
+      if (importantPhoto === photo) {
+        dispatch(placeOfferSlice.actions.handleChangeImportantPhoto(''));
+      } else {
+        dispatch(placeOfferSlice.actions.handleChangeImportantPhoto(photo));
+      }
+    };
+  };
+
   const handleSelectCategory = (
     formValues: IFormStatePlaceOfferCategory,
     currentCategory: IPlaceOfferCategoryItem[],
-    handleSuccessSelectCategory: () => void,
+    handleSuccessSelectCategory: () => void
   ) => {
     if (formValues) {
       if (
@@ -91,13 +105,19 @@ export const usePlaceOfferStore = () => {
     successCallback();
   };
 
-
   // Получение финальных полей (тип двигателя, мощность)
-  const getFourChildren = (childrenArray: IAdditionalFieldsFetchJSON[], alias: string) => {
+  const getFourChildren = (
+    childrenArray: IAdditionalFieldsFetchJSON[],
+    alias: string
+  ) => {
     if (Array.isArray(childrenArray)) {
-      const currentChildren = childrenArray.find(item => item.alias === alias);
+      const currentChildren = childrenArray.find(
+        (item) => item.alias === alias
+      );
       // Записываем последнюю вложенность полей
-      dispatch(placeOfferSlice.actions.handleChangeLastChildJson(childrenArray))
+      dispatch(
+        placeOfferSlice.actions.handleChangeLastChildJson(childrenArray)
+      );
       if (currentChildren) {
         return Array.from(currentChildren.value);
       }
@@ -109,7 +129,7 @@ export const usePlaceOfferStore = () => {
     jsonObject: IAdditionalFieldsFetchJSON,
     dependencies: string[],
     getValue: UseFormGetValues<FieldValues>,
-    alias: string,
+    alias: string
   ) => {
     let returnArray = [];
     const dependenciesLength = dependencies.length;
@@ -124,26 +144,38 @@ export const usePlaceOfferStore = () => {
         const twoDependencies = dependencies[1];
         const findValueTwo = getValue(twoDependencies);
         if (findValueTwo) {
-          const innerChildrenTwo = innerChildrenOne.find(item => item.value === findValueTwo)?.children;
+          const innerChildrenTwo = innerChildrenOne.find(
+            (item) => item.value === findValueTwo
+          )?.children;
           if (innerChildrenTwo) {
             // Возвращаем вторую вложенность
             if (dependenciesLength === 2) {
-              returnArray = getStringArrayInObjectArray(innerChildrenTwo, 'value');
+              returnArray = getStringArrayInObjectArray(
+                innerChildrenTwo,
+                'value'
+              );
             }
             // Третья вложенность
             if (dependenciesLength > 2) {
               const threeDependencies = dependencies[2];
               const findValueThree = getValue(threeDependencies);
               if (findValueThree) {
-                const innerChildrenThree = innerChildrenTwo.find(item => item.value === findValueThree)?.children;
+                const innerChildrenThree = innerChildrenTwo.find(
+                  (item) => item.value === findValueThree
+                )?.children;
                 if (innerChildrenThree) {
-                  returnArray = getStringArrayInObjectArray(innerChildrenThree, 'value');
+                  returnArray = getStringArrayInObjectArray(
+                    innerChildrenThree,
+                    'value'
+                  );
                   // Четвертая вложенность
                   if (dependenciesLength > 3) {
                     const fourDependencies = dependencies[3];
                     const findValueFour = getValue(fourDependencies);
                     if (findValueFour) {
-                      const innerChildrenFour = innerChildrenThree.find(item => item.value === findValueFour)?.children;
+                      const innerChildrenFour = innerChildrenThree.find(
+                        (item) => item.value === findValueFour
+                      )?.children;
                       if (innerChildrenFour) {
                         returnArray = getFourChildren(innerChildrenFour, alias);
                       }
@@ -160,6 +192,7 @@ export const usePlaceOfferStore = () => {
   };
 
   return {
+    importantPhoto,
     aliasOne,
     aliasTwo,
     aliasThree,
@@ -167,6 +200,7 @@ export const usePlaceOfferStore = () => {
     lastJsonInfo,
     additionFields,
     aliasName,
+    handleChangeImportantPhoto,
     getPlaceOfferJsonChildren,
     handleSelectCategory,
     handleChangePlaceOfferState,

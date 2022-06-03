@@ -1,36 +1,58 @@
 import React, { FC, useCallback } from 'react';
-import { FlatList, View } from 'react-native';
-import { usePhotoList } from './usePhotoList';
+import { FlatList, TouchableOpacity, View } from 'react-native';
 import PhotoItem from '../PhotoItem/PhotoItem';
-import PhotoPlaceholder from '../PhotoPlaceholder/PhotoPlaceholder';
-import {usePhotoListStyles} from "./styles";
+import { usePhotoListStyles } from './styles';
+import { usePhotoList } from './usePhotoList';
+import BasketIcon from '../../../../../assets/BacketIcon.svg';
 
 interface IPhotoListProps {
   photosArray: string[];
+  onPressPhotoPlaceholder: () => void;
 }
 
-const PhotoList: FC<IPhotoListProps> = ({ photosArray }) => {
-  const { keyExtractor } = usePhotoList();
+const PhotoList: FC<IPhotoListProps> = ({
+  photosArray,
+  onPressPhotoPlaceholder,
+}) => {
   const styles = usePhotoListStyles();
+  const {
+    deleteArray,
+    isDeleteMode,
+    handleDeletePhotos,
+    handleToggleDeleteMode,
+    handleAddPhotoInDeleteArray,
+  } = usePhotoList();
+
   const renderItem = useCallback(
     ({ item }) => (
       <PhotoItem
         key={item}
         photo={item}
-        importantPhoto={''}
-        onPress={() => console.log(1)}
+        isDeleteMode={isDeleteMode}
+        deleteArray={deleteArray}
+        handleAddPhotoInDeleteArray={handleAddPhotoInDeleteArray}
+        onToggleDeleteMode={handleToggleDeleteMode}
+        onPressLastPhoto={onPressPhotoPlaceholder}
       />
     ),
-    []
+    [isDeleteMode, deleteArray]
   );
+
   return (
     <View style={styles.container}>
       <FlatList
-        data={photosArray}
-        keyExtractor={keyExtractor}
+        data={[...photosArray, 'lastPhoto']}
+        numColumns={3}
         renderItem={renderItem}
       />
-      <PhotoPlaceholder size={'small'} />
+      {isDeleteMode && (
+        <TouchableOpacity
+          style={styles.basketContainer}
+          onPress={handleDeletePhotos}
+        >
+          <BasketIcon />
+        </TouchableOpacity>
+      )}
     </View>
   );
 };

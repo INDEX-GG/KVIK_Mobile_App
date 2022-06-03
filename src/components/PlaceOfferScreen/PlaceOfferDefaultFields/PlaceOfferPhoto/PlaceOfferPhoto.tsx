@@ -9,24 +9,35 @@ import PhotoList from './PhotoList/PhotoList';
 
 const PlaceOfferPhoto = () => {
   const styles = usePlaceOfferPhotoStyles();
-  const { photosArray, isPhotoArrayLength } = usePlaceOfferPhoto();
+  const {
+    fileArray,
+    isFilesArrayLength,
+    isVisiblePhotoFiles,
+    handleToggleVisible,
+  } = usePlaceOfferPhoto();
 
   return (
     <View>
-      <View style={styles.container}>
-        {isPhotoArrayLength ? (
-          <PhotoList photosArray={photosArray} />
-        ) : (
-          <PhotoPlaceholder size="big" />
-        )}
-      </View>
+      {isFilesArrayLength ? (
+        <View style={styles.container}>
+          <PhotoList
+            onPressPhotoPlaceholder={handleToggleVisible}
+            photosArray={fileArray}
+          />
+        </View>
+      ) : (
+        <PhotoPlaceholder onPress={handleToggleVisible} size="big" />
+      )}
       <UbuntuTextUI
         fontWeight={400}
         textProps={{ style: styles.containerText }}
       >
         До 20 фотографий в формате JPG или PNG. Размер фото - до 25MB
       </UbuntuTextUI>
-      <Camera />
+      <Camera
+        isVisibleModal={isVisiblePhotoFiles}
+        onClose={handleToggleVisible}
+      />
     </View>
   );
 };

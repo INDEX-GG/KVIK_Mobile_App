@@ -13,8 +13,9 @@ interface IInitialState {
   aliasFull: null | string;
   aliasName: null | string;
   additionFields: IAdditionalFieldsItem[];
-  jsonInfo: null |IAdditionalFieldsFetchJSON;
+  jsonInfo: null | IAdditionalFieldsFetchJSON;
   lastJsonInfo: ILastJsonChildren[] | null;
+  importantPhoto: string;
 }
 
 interface IChangeInitialState {
@@ -35,6 +36,7 @@ const initialState: IInitialState = {
   additionFields: [],
   jsonInfo: null,
   lastJsonInfo: null,
+  importantPhoto: '',
 };
 
 export const placeOfferSlice = createSlice({
@@ -42,7 +44,10 @@ export const placeOfferSlice = createSlice({
   initialState,
   reducers: {
     reset: () => initialState,
-    handleChangeLastChildJson(state, action: PayloadAction<ILastJsonChildren[]>) {
+    handleChangeLastChildJson(
+      state,
+      action: PayloadAction<ILastJsonChildren[]>
+    ) {
       state.lastJsonInfo = action.payload;
     },
     handleChangeState(state, action: PayloadAction<IChangeInitialState>) {
@@ -53,9 +58,15 @@ export const placeOfferSlice = createSlice({
       state.aliasName = action.payload.aliasName;
       state.additionFields = action.payload.additionFields;
     },
+    handleChangeImportantPhoto(state, action: PayloadAction<string>) {
+      state.importantPhoto = action.payload;
+    },
   },
   extraReducers: {
-    [fetchMoreAdditionalFields.fulfilled.type]: (state, action: PayloadAction<IAdditionalFieldsFetchJSON>) => {
+    [fetchMoreAdditionalFields.fulfilled.type]: (
+      state,
+      action: PayloadAction<IAdditionalFieldsFetchJSON>
+    ) => {
       state.jsonInfo = action.payload;
     },
   },
