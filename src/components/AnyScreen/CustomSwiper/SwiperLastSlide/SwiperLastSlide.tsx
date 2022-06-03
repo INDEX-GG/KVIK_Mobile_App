@@ -5,7 +5,7 @@ import RobotoText from '../../../../UI/RobotoText';
 import PhotoIcon from '../../../../assets/PhotoIcon.svg';
 
 interface ISwiperLastSlideProps {
-  remainingPhotosCount: number;
+  remainingPhotosCount?: number;
 }
 
 const SwiperLastSlide: FC<ISwiperLastSlideProps> = ({

@@ -4,18 +4,21 @@ import Swiper from 'react-native-swiper';
 import SliderSlide from './SwiperSlide/SwiperSlide';
 import { useDevice } from '../../../hooks/useDevice';
 import { useCustomSwiperStyles } from './style';
-import { Pressable } from 'react-native';
+import { Pressable, View } from 'react-native';
+import { Text } from 'react-native-elements';
 
 interface ICustomSwiperProps {
   photos: string[];
-  remainingPhotosCount: number;
-  visibleLastSlide: boolean;
+  isCardPagination?: boolean;
+  remainingPhotosCount?: number;
+  visibleLastSlide?: boolean;
   onPressSlide?: () => void;
 }
 
 const CustomSwiper: FC<ICustomSwiperProps> = ({
   photos,
   remainingPhotosCount,
+  isCardPagination = false,
   visibleLastSlide,
   onPressSlide,
 }) => {
@@ -25,6 +28,25 @@ const CustomSwiper: FC<ICustomSwiperProps> = ({
   const { uniqueKeyMap } = useSecret();
   const { isIos } = useDevice();
 
+  const renderPagination = (index: number, total: number) => {
+    return (
+        <View style={styles.paginationNumber}>
+          <Text style={{ color: '#fff' }}>
+            <Text style={{ color: '#fff' }}>{index + 1}</Text>/{total}
+          </Text>
+        </View>
+    )
+  }
+
+  const typePagination = !isCardPagination ?
+    {
+        dotStyle: styles.dot,
+        activeDotStyle: styles.active,
+        paginationStyle: styles.pagination,
+    } : {
+        renderPagination: renderPagination
+    };
+
   return (
     <>
       <Swiper
@@ -33,9 +55,7 @@ const CustomSwiper: FC<ICustomSwiperProps> = ({
         showsButtons={false}
         loadMinimal={true}
         bounces={isIos}
-        dotStyle={styles.dot}
-        activeDotStyle={styles.active}
-        paginationStyle={styles.pagination}
+        {...typePagination}
       >
         {isPhotos
           ? photos.map((photo, index) => (

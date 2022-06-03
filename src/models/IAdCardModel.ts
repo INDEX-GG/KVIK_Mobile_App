@@ -26,4 +26,5 @@ export interface IAdCardModel {
   user_raiting: null | number;
   verify_moderator: { verify: [] };
   viewing: null;
+  manager_phone: string;
 }

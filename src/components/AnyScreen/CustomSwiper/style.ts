@@ -7,6 +7,15 @@ const CustomSwiperStyles = () => {
       left: 0,
       bottom: 5,
     },
+    paginationNumber: {
+      position: 'absolute',
+      bottom: 13,
+      backgroundColor: 'rgba(44, 44, 44, 0.74)',
+      alignSelf: 'center',
+      paddingVertical: 2,
+      paddingHorizontal: 8,
+      borderRadius: 10,
+    },
     dot: {
       width: 8,
       height: 8,
