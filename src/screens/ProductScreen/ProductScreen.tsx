@@ -9,11 +9,12 @@ import InfoProduct from "./InfoProduct/InfoProduct";
 import CommunicationButtons from './CommunicationButtons/CommunicationButtons';
 import TransactionAdvantages from "./TransactionAdvantages/TransactionAdvantages";
 import ButtonBuy from "./ButtonBuy/ButtonBuy";
-import DescriptionProduct from "./DescriptionProduct/DescriptionProduct";
+import DescriptionProduct from './DescriptionProduct/DescriptionProduct';
+import {selectProductState} from "../../store/reducers/productSlice/productSlice";
 
 const ProductScreen = () => {
   const styles = useProductScreenStyles();
-  const { activeProduct } = useAppSelector((state => state.productReducer));
+  const { activeProduct } = useAppSelector(selectProductState);
 
   if (!activeProduct) {
       return (

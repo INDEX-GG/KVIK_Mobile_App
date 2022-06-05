@@ -10,7 +10,6 @@ import CardAdTitle from './CardAdTitle/CardAdTitle';
 import CardAdPhoto from './CardAdPhoto/CardAdPhoto';
 import CardAdLike from './CardAdLike/CardAdLike';
 import {useAppDispatch} from "../../../hooks/useAppDispatch";
-import {changeProduct} from "../../../store/reducers/productSlice/productSlice";
 import {fetchProductAd} from "../../../store/reducers/productSlice/asyncAction";
 
 interface CardAdItemProps {
@@ -26,7 +25,7 @@ const CardAdItem: FC<CardAdItemProps> = ({ adItem }) => {
   const isPhoto = useMemo(() => !!adItem?.post_photo_v2, [adItem]);
 
   const handlePressAd = () => {
-    fetchProductAd(adItem.id);
+    dispatch(fetchProductAd(adItem.id))
     pushTo('Product')();
   };
 

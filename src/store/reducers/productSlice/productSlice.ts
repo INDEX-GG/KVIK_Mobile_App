@@ -1,9 +1,10 @@
 import {IAdCardModel} from "../../../models/IAdCardModel";
 import { createSlice } from "@reduxjs/toolkit";
-import {fetchProductAd} from "./asyncAction";
+import {AppStore} from "../../store";
+import { fetchProductAd } from "./asyncAction";
 
 type InitialState = {
-    activeProduct: IAdCardModel | null;
+    activeProduct: undefined | null;
 }
 
 const initialState: InitialState = {
@@ -22,5 +23,9 @@ export const productSlice = createSlice({
 
     }
  })
+
+const productState = (state: AppStore) => state.productReducer
+
+export const selectProductState = (state: AppStore) => productState(state).activeProduct
 
 export default productSlice.reducer;
