@@ -4,6 +4,7 @@ import ModalUI from '../../../../../UI/ModalUI/ModalUI';
 import CheckBoxUI from '../../../../../UI/CheckBoxUI/CheckBoxUI';
 import UbuntuTextUI from '../../../../../UI/UbuntuTextUI/UbuntuTextUI';
 import { usePhotoItemModalStyles } from './style';
+import ArrowLeft from '../../../../../assets/ModalCloseIcon.svg';
 
 interface IPhotoItemModalProps {
   photo: string;
@@ -24,22 +25,27 @@ const PhotoItemModal: FC<IPhotoItemModalProps> = ({
 
   return (
     <ModalUI isVisible={isVisibleModal} onBackdropPress={handleToggleModal}>
-      <View style={styles.photoModalContainer}>
-        <Image style={styles.photoModal} source={{ uri: photo }} />
+      <View>
+        <TouchableOpacity style={styles.closeIcon} onPress={handleToggleModal}>
+          <ArrowLeft />
+        </TouchableOpacity>
+        <View style={styles.photoModalContainer}>
+          <Image style={styles.photoModal} source={{ uri: photo }} />
+        </View>
+        <TouchableOpacity
+          style={styles.textContainer}
+          onPress={handleChangeImportantPhoto}
+        >
+          <CheckBoxUI
+            active={isImportantPhoto}
+            defaultStyles={styles.checkboxDefault}
+            activeStyles={styles.checkBoxActive}
+          />
+          <UbuntuTextUI fontWeight={500} textProps={{ style: styles.text }}>
+            Сделать главной фотографией
+          </UbuntuTextUI>
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        style={styles.textContainer}
-        onPress={handleChangeImportantPhoto}
-      >
-        <CheckBoxUI
-          active={isImportantPhoto}
-          defaultStyles={styles.checkboxDefault}
-          activeStyles={styles.checkBoxActive}
-        />
-        <UbuntuTextUI fontWeight={500} textProps={{ style: styles.text }}>
-          Сделать главной фотографией
-        </UbuntuTextUI>
-      </TouchableOpacity>
     </ModalUI>
   );
 };

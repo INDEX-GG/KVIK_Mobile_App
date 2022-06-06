@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { View, Text, Pressable } from 'react-native';
+import { View, Pressable } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { useDeviceCameraStyles } from './style';
 import CameraIcon from '../../../assets/CameraIcon.svg';
@@ -22,13 +22,18 @@ const DeviceCamera: FC = () => {
             {({ status }) => {
               if (status !== 'READY') {
                 return (
-                  <View>
-                    <Text>23</Text>
+                  <View
+                    style={{
+                      ...styles.iconCameraContainer,
+                      ...styles.iconPlaceholderContainer,
+                    }}
+                  >
+                    <CameraIcon />
                   </View>
                 );
               }
               return (
-                <View style={styles.iconContainer}>
+                <View style={styles.iconCameraContainer}>
                   <CameraIcon />
                 </View>
               );

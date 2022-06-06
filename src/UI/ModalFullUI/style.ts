@@ -1,17 +1,20 @@
 import { StyleSheet } from 'react-native';
 import { useCurrentTheme } from '../../hooks/useTheme';
-import { useSize } from '../../hooks/useSize';
+import { useDevice } from '../../hooks/useDevice';
+import {useSize} from "../../hooks/useSize";
 
 const ModalFullUIStyles = () => {
   const { isDark } = useCurrentTheme();
+  const { isIos } = useDevice();
   const { deviceHeight } = useSize();
   return StyleSheet.create({
     container: {
       position: 'relative',
+      height: isIos ? deviceHeight - 70 : deviceHeight,
       backgroundColor: isDark ? '#585858' : '#E8E8E8',
     },
     innerContainer: {
-      height: deviceHeight,
+      height: '100%',
       borderTopRightRadius: 10,
       borderTopLeftRadius: 10,
       backgroundColor: isDark ? '#151515' : '#F5F5F5',
@@ -31,17 +34,18 @@ const ModalFullUIStyles = () => {
     },
     bottomButtonContainer: {
       position: 'absolute',
-      top: deviceHeight - 62,
+      bottom: isIos ? -15 : 0,
       left: 0,
       zIndex: 10,
       width: '100%',
-      height: 62,
+      height: isIos ? 75 : 62,
       backgroundColor: isDark ? '#151515' : '#F5F5F5',
       borderTopLeftRadius: 10,
       borderTopRightRadius: 10,
       paddingHorizontal: 18,
       display: 'flex',
-      justifyContent: 'center',
+      justifyContent: isIos ? 'flex-start' : 'center',
+      paddingTop: isIos ? 10 : 0,
       alignItems: 'center',
     },
   });

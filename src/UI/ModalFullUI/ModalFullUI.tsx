@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, Modal, ModalProps, TouchableOpacity } from 'react-native';
 import { useModalFullUIStyles } from './style';
 import UbuntuTextUI from '../UbuntuTextUI/UbuntuTextUI';
@@ -12,6 +13,7 @@ interface IModalFullUI {
   onPressButton?: () => void;
   visibleButton?: boolean;
   visibleDefaultContainer?: boolean;
+  isSafeAreaView?: boolean;
 }
 
 const ModalFullUI: FC<IModalFullUI> = ({
@@ -21,33 +23,46 @@ const ModalFullUI: FC<IModalFullUI> = ({
   onClose,
   children,
   visibleDefaultContainer = true,
+  isSafeAreaView = false,
 }) => {
   const styles = useModalFullUIStyles();
+  const Container = useMemo(
+    () => (isSafeAreaView ? SafeAreaView : View),
+    [isSafeAreaView]
+  );
 
   return (
     <Modal {...modalProps}>
-      {visibleDefaultContainer ? (
-        <View style={styles.container}>
-          <View style={styles.innerContainer}>
-            <TouchableOpacity onPress={onClose} style={styles.buttonContainer}>
-              <UbuntuTextUI
-                fontWeight={400}
-                textProps={{ style: styles.cancelText }}
+      <Container style={{ backgroundColor: styles.container.backgroundColor }}>
+        {visibleDefaultContainer ? (
+          <View style={styles.container}>
+            <View style={styles.innerContainer}>
+              <TouchableOpacity
+                onPress={onClose}
+                style={styles.buttonContainer}
               >
-                Отмена
-              </UbuntuTextUI>
-            </TouchableOpacity>
-            {children}
-          </View>
-          {visibleButton && (
-            <View style={styles.bottomButtonContainer}>
-              <ButtonUI text={textButton} buttonProps={{ onPress: onClose }} />
+                <UbuntuTextUI
+                  fontWeight={400}
+                  textProps={{ style: styles.cancelText }}
+                >
+                  Отмена
+                </UbuntuTextUI>
+              </TouchableOpacity>
+              {children}
             </View>
-          )}
-        </View>
-      ) : (
-        children
-      )}
+            {visibleButton && (
+              <View style={styles.bottomButtonContainer}>
+                <ButtonUI
+                  text={textButton}
+                  buttonProps={{ onPress: onClose }}
+                />
+              </View>
+            )}
+          </View>
+        ) : (
+          children
+        )}
+      </Container>
     </Modal>
   );
 };

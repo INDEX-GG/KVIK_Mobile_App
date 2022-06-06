@@ -39,12 +39,10 @@ const DeviceFullScreenCamera: FC<IDeviceFullScreenCameraProps> = ({
     >
       <View style={styles.container}>
         <RNCamera
-          // ref={handleChangeCamera}
           type={orientationType}
           flashMode={lightningMode}
           useNativeZoom={true}
           captureAudio={false}
-          onTap={(event) => console.log(event)}
           style={styles.cameraContainer}
         >
           {({ camera }) => {

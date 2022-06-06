@@ -3,9 +3,9 @@ import { Text, TextProps } from 'react-native';
 
 interface IUbuntuTextUIProps {
   children: React.ReactChildren | React.ReactNode;
-  textProps?: TextProps,
-  fontWeight?: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
-  fontStyle?: 'italic' | 'normal'
+  textProps?: TextProps;
+  fontWeight?: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
+  fontStyle?: 'italic' | 'normal';
 }
 
 const UbuntuTextUI: FC<IUbuntuTextUIProps> = ({
@@ -14,7 +14,6 @@ const UbuntuTextUI: FC<IUbuntuTextUIProps> = ({
   fontWeight = 400,
   fontStyle = 'normal',
 }) => {
-
   const fontFamily = useMemo(() => {
     let fontName = 'Ubuntu-';
     switch (fontWeight) {
@@ -32,14 +31,14 @@ const UbuntuTextUI: FC<IUbuntuTextUIProps> = ({
         break;
     }
     if (fontStyle === 'italic') {
-      fontName +=  'Italic';
+      fontName += 'Italic';
     }
     return fontName;
   }, [fontWeight, fontStyle]);
 
   const textPropsStyle = useMemo(() => {
     if (typeof textProps?.style === 'object') {
-      return {...textProps.style, fontFamily: fontFamily};
+      return { ...textProps.style, fontFamily: fontFamily };
     }
     return {};
   }, [textProps]);

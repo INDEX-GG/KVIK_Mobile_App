@@ -2,6 +2,11 @@ import { StyleSheet } from 'react-native';
 
 const PhotoItemModalStyles = () => {
   return StyleSheet.create({
+    closeIcon: {
+      width: 30,
+      height: 26,
+      marginBottom: 6,
+    },
     photoModalContainer: {
       width: 300,
       borderRadius: 10,
