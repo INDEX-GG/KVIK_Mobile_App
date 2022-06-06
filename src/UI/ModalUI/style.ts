@@ -10,9 +10,7 @@ const ModalUIStyles = () => {
       backgroundColor: 'rgba(0, 0, 0, 0)',
     },
     backdrop: {
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      position: 'absolute',
-      zIndex: 1,
+      backgroundColor: 'rgba(0, 0, 0, 0.8)',
     },
   });
 };

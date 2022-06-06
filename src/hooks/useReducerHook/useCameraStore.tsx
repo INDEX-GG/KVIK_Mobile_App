@@ -55,8 +55,8 @@ export const useCameraStore = () => {
       if (camera) {
         const options = { quality: 0.5, base64: true };
         const data = await camera.takePictureAsync(options);
-        CameraRoll.save(data.uri, { type: 'photo', album: 'Camera' }).then(
-          (response) => {
+        CameraRoll.save(data.uri, { type: 'photo', album: 'Camera' })
+          .then((response) => {
             if (response) {
               handleAddPhotoFileInArray(data.uri);
               handleChangeDeviceItem(data.uri);
@@ -64,8 +64,14 @@ export const useCameraStore = () => {
                 successCallback();
               }
             }
-          }
-        );
+          })
+          .catch(() => {
+            handleAddPhotoFileInArray(data.uri);
+            handleChangeDeviceItem(data.uri);
+            if (successCallback) {
+              successCallback();
+            }
+          });
       }
     };
   };

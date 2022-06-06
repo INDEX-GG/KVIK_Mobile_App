@@ -23,6 +23,7 @@ const Camera: FC<ICameraProps> = ({ isVisibleModal, onClose }) => {
       onClose={onClose}
       visibleButton={!!countFiles}
       textButton={`Выбрать ${countFiles}`}
+      isSafeAreaView={true}
     >
       <View style={styles.container}>
         <DeviceCamera />

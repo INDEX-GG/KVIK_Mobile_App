@@ -1,8 +1,12 @@
 import React, { FC } from 'react';
 import {
-  IAdditionalFieldsItem, ICheckListUIProps, IPeriodUIProps,
+  IAdditionalFieldsItem,
+  ICheckListUIProps,
+  IPeriodUIProps,
   ITextAdditionalFields,
-  ITextListAdditionalFields, ITextListUIProps, ITextNumberAdditionalFields,
+  ITextListAdditionalFields,
+  ITextListUIProps,
+  ITextNumberAdditionalFields,
 } from '../../../../models/IAdditionalFieldsModel';
 import TextListUI from '../../../../UI/TextListUI/TextListUI';
 import TextUI from '../../../../UI/TextUI/TextUI';
@@ -27,42 +31,29 @@ const AdditionFieldsItem: FC<IAdditionalFieldsItem> = (props) => {
     isVisible,
   } = useAdditionFieldsItem(type, dependencies);
 
-  return (
-    isVisible ? (
-      <>
-        {isTextList && (
-          <TextListUI
-            {...props as IAdditionalFieldsItem & ITextListAdditionalFields}
-          />
-        )}
-        {isText && (
-          <TextUI
-            {...props as IAdditionalFieldsItem & ITextAdditionalFields}
-          />
-        )}
-        {isNumber && (
-          <TextNumberUI
-            {...props as IAdditionalFieldsItem & ITextNumberAdditionalFields}
-          />
-        )}
-        {isCheckList && (
-          <CheckListUI {...props as ICheckListUIProps}/>
-        )}
-        {isBoolean && (
-          <CheckBoxBooleanUI
-            alias={props.alias}
-            title={props.title}
-          />
-        )}
-        {isPeriod && (
-          <PeriodUI {...props as IPeriodUIProps} />
-        )}
-        {isTime && (
-          <TimeTextListUI {...props as ITextListUIProps}/>
-        )}
-      </>
-    ) : null
-  );
+  return isVisible ? (
+    <>
+      {isTextList && (
+        <TextListUI
+          {...(props as IAdditionalFieldsItem & ITextListAdditionalFields)}
+        />
+      )}
+      {isText && (
+        <TextUI {...(props as IAdditionalFieldsItem & ITextAdditionalFields)} />
+      )}
+      {isNumber && (
+        <TextNumberUI
+          {...(props as IAdditionalFieldsItem & ITextNumberAdditionalFields)}
+        />
+      )}
+      {isCheckList && <CheckListUI {...(props as ICheckListUIProps)} />}
+      {isBoolean && (
+        <CheckBoxBooleanUI alias={props.alias} title={props.title} />
+      )}
+      {isPeriod && <PeriodUI {...(props as IPeriodUIProps)} />}
+      {isTime && <TimeTextListUI {...(props as ITextListUIProps)} />}
+    </>
+  ) : null;
 };
 
 export default React.memo(AdditionFieldsItem);
