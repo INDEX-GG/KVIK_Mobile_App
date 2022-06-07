@@ -18,9 +18,10 @@ const DescriptionAddressStyle = () => {
             fontSize: 14,
             lineHeight: 16,
             color: isDark ? '#FFF' : '#000',
+            maxWidth: '80%',
         },
         btn: {
-            marginLeft: 'auto',
+            maxWidth: '20%',
         },
         btnText: {
             fontSize: 14,

@@ -5,16 +5,20 @@ import React from "react";
 import CommunicationMessageButton from "./CommunicationMessageButton/CommunicationMessageButton";
 
 type CommunicationButtonsProps = {
-    phone?: string,
+    phone: string,
+    communication: {
+        phone: boolean,
+        message: boolean,
+    }
 }
 
-const CommunicationButtons = ({phone}: CommunicationButtonsProps) => {
+const CommunicationButtons = ({phone, communication}: CommunicationButtonsProps) => {
     const styles = useCommunicationButtonsStyle();
 
     return (
         <View style={styles.container}>
-            {phone && <CommunicationPhoneButton phone={phone} />}
-            <CommunicationMessageButton />
+            {communication.phone && <CommunicationPhoneButton phone={phone} />}
+            {communication.message && <CommunicationMessageButton /> }
         </View>
     )
 }

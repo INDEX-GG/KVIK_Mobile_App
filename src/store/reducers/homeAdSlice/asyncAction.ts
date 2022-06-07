@@ -9,7 +9,7 @@ export const fetchHomeAd = createAsyncThunk(
   async (data: any, thunkAPI) => {
     try {
       const response = await kvikAxios
-        .post<IAdCardModel[]>('getPostsPortion', data)
+        .post<IAdCardModel[]>('api/getPostsPortion', data)
         .then((cards) => ({
           cards: cards.data,
           ...regionExcludesAds(

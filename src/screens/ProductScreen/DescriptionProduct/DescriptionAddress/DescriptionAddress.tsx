@@ -5,7 +5,7 @@ import {useDescriptionAddressStyle} from "./style";
 import React from "react";
 
 type DescriptionAddressProps = {
-    address?: string,
+    address: string,
 }
 
 const DescriptionAddress = ({address}: DescriptionAddressProps) => {
@@ -13,9 +13,9 @@ const DescriptionAddress = ({address}: DescriptionAddressProps) => {
 
     return (
         <View style={styles.container}>
-            {address && <UbuntuTextUI fontWeight={500} textProps={{style: styles.text}}>
+            <UbuntuTextUI fontWeight={500} textProps={{style: styles.text}}>
                 {address.slice(address.indexOf('г. '))}
-            </UbuntuTextUI>}
+            </UbuntuTextUI>
             <PressableElement style={styles.btn} activeStyles={styles.btn} onPress={() => console.log('click a map')} >
                 <UbuntuTextUI fontWeight={500} textProps={{style: styles.btnText}}>На карте</UbuntuTextUI>
             </PressableElement>

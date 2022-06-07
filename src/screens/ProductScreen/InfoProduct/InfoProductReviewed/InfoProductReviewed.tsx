@@ -5,7 +5,7 @@ import React from "react";
 import {useInfoProductReviewedStyle} from "./style";
 
 type InfoProductReviewedProps = {
-    reviewed: number,
+    reviewed: number | null,
     viewed?: boolean,
 }
 
@@ -14,7 +14,7 @@ const InfoProductReviewed = ({reviewed, viewed = false}: InfoProductReviewedProp
 
     return (
         <View style={styles.container}>
-            <UbuntuTextUI fontWeight={400} textProps={{style: styles.text}}>{reviewed}</UbuntuTextUI>
+            <UbuntuTextUI fontWeight={400} textProps={{style: styles.text}}>{reviewed ? reviewed : '0'}</UbuntuTextUI>
             {!viewed  && <EyeIcon style={styles.icon} />}
         </View>
     )

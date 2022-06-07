@@ -13,7 +13,7 @@ import MainLayout from './src/layout/MainLayout/MainLayout';
 import { Provider } from 'react-redux';
 // import { store } from './src/store/store';
 import { setupStore } from './src/store/store';
-const store = setupStore();
+const store = setupStore;
 
 const App = () => {
   return (

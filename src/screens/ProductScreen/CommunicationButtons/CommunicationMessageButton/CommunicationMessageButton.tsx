@@ -9,7 +9,7 @@ const CommunicationMessageButton = () => {
 
     return (
         <PressableElement onPress={()=> console.log('click')} style={styles.button} activeStyles={styles.button}>
-            <MessageIcon style={styles.icon}/>
+            <MessageIcon style={styles.icon as {}}/>
             <UbuntuTextUI fontWeight={500} textProps={{style: styles.text}}>Написать</UbuntuTextUI>
         </PressableElement>
     )

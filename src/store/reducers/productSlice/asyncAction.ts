@@ -1,14 +1,45 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {kvikAxios} from "../../../http/customAxios";
+import {AppDispatch, RootState,} from "../../store";
+import {AxiosInstance} from "axios";
+import {ProductType} from "../../../types/producDataTypes";
+import {IPlaceOfferCategoryModel} from "../../../models/IPlaceOfferCategoryModel";
 
-export const fetchProductAd = createAsyncThunk(
+export const fetchProductAd = createAsyncThunk<
+    ProductType,
+    number,
+    {
+        dispatch: AppDispatch,
+        state: RootState,
+        extra: AxiosInstance
+    }
+    >(
     'productAds/data',
-    async (productId: number, thunkAPI) => {
+    async (productId, {extra: api}) => {
         try {
-            const {data} = await kvikAxios.post('/getPost', productId);
+            const {data} = await api.post('api/getPost', {id: productId});
             return data
         } catch (err) {
-            throw err
+            console.error(err);
         }
     }
 )
+
+export const fetchProductCategory = createAsyncThunk<
+    IPlaceOfferCategoryModel,
+    undefined,
+    {
+        dispatch: AppDispatch,
+        state: RootState,
+        extra: AxiosInstance
+    }
+    >(
+    'productAds/category',
+        async (_, {extra: api}) => {
+        try {
+            const {data} = await api.get('placeOfferJson/new_catalog.json');
+            return data;
+        } catch (err) {
+            console.error(err)
+        }
+        }
+    )
