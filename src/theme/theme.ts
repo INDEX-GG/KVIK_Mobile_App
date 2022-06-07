@@ -121,3 +121,7 @@ export const darkTheme = {
     },
   },
 };
+
+export const anyThem = {
+  errorColor: '#FF6565',
+};

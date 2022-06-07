@@ -31,6 +31,7 @@ const AdditionFieldsItem: FC<IAdditionalFieldsItem> = (props) => {
     isVisible,
   } = useAdditionFieldsItem(type, dependencies);
 
+
   return isVisible ? (
     <>
       {isTextList && (
@@ -48,7 +49,11 @@ const AdditionFieldsItem: FC<IAdditionalFieldsItem> = (props) => {
       )}
       {isCheckList && <CheckListUI {...(props as ICheckListUIProps)} />}
       {isBoolean && (
-        <CheckBoxBooleanUI alias={props.alias} title={props.title} />
+        <CheckBoxBooleanUI
+          alias={props.alias}
+          title={props.title}
+          required={props.required}
+        />
       )}
       {isPeriod && <PeriodUI {...(props as IPeriodUIProps)} />}
       {isTime && <TimeTextListUI {...(props as ITextListUIProps)} />}

@@ -13,6 +13,10 @@ export const usePlaceOfferAdditionalFields = () => {
     return Array.isArray(additionFields) && additionFields.length;
   }, [additionFields]);
 
+  const onSubmit = (data: any) => {
+    console.log(data);
+  };
+
   useEffect(() => {
     return () => {
       dispatch(placeOfferSlice.actions.reset());
@@ -21,6 +25,7 @@ export const usePlaceOfferAdditionalFields = () => {
 
   return {
     methods,
+    onSubmit,
     additionFields,
     isAdditionFieldsArray,
   };

@@ -33,7 +33,12 @@ const ModalFullUI: FC<IModalFullUI> = ({
 
   return (
     <Modal {...modalProps}>
-      <Container style={{ backgroundColor: styles.container.backgroundColor }}>
+      <Container
+        style={{
+          backgroundColor: styles.container.backgroundColor,
+          height: '100%',
+        }}
+      >
         {visibleDefaultContainer ? (
           <View style={styles.container}>
             <View style={styles.innerContainer}>

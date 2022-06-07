@@ -1,18 +1,23 @@
-import React, {useMemo} from 'react';
-import TextUI from "../../../../UI/TextUI/TextUI";
-import {usePlaceOfferDefaultFieldsStyles} from "../style";
+import React, { useMemo } from 'react';
+import TextUI from '../../../../UI/TextUI/TextUI';
+import { usePlaceOfferDefaultFieldsStyles } from '../style';
 
 const PlaceOfferDescription = () => {
   const styles = usePlaceOfferDefaultFieldsStyles();
-  const containerStyles = useMemo(() => ({
-    ...styles.defaultFieldsTextInput, minHeight: 140, paddingTop: 16
-  }), [styles])
+  const containerStyles = useMemo(
+    () => ({
+      ...styles.defaultFieldsTextInput,
+      minHeight: 144,
+      textAlignVertical: 'top',
+    }),
+    [styles]
+  );
 
   return (
     <TextUI
-      type='text'
-      alias='description'
-      title='Описание'
+      type="text"
+      alias="description"
+      title="Описание"
       text_excludes_symbols={[]}
       text_includes_symbols={[]}
       text_max_len={10000}
@@ -20,15 +25,16 @@ const PlaceOfferDescription = () => {
       view_product={false}
       default_value={''}
       dependencies={undefined}
-      required={{state: true, value: 'Заполните описание'}}
+      required={{ state: true, value: '' }}
       customStyle={{
+        error: styles.error,
         container: containerStyles,
         label: styles.label,
-        inputColor: {color: styles.placeHolderColor.color},
-        inputContainer: styles.inputContainer,
+        inputColor: { color: styles.placeHolderColor.color },
+        inputContainer: styles.textFieldContainer,
       }}
       textNativeProps={{
-        numberOfLines: 4,
+        numberOfLines: 1,
         multiline: true,
       }}
     />

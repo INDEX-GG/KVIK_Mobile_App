@@ -6,6 +6,9 @@ const PlaceOfferAdditionalFieldsStyles = () => {
       marginTop: 15,
       paddingHorizontal: 16,
     },
+    buttonContainer: {
+      marginBottom: 20,
+    },
   });
 };
 
