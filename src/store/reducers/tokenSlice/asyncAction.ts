@@ -11,7 +11,7 @@ export const fetchRefreshToken = createAsyncThunk(
     try {
       const reqData = { RefreshAuthToken: data.authToken };
       const response = await kvikAxios
-        .post<IRefreshToken>('mobile/refresh', reqData)
+        .post<IRefreshToken>('api/mobile/refresh', reqData)
         .then((token) => token);
       return {
         refreshToken: response.data.authToken,

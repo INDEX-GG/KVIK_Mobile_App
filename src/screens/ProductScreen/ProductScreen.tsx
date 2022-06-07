@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { View, Text } from 'react-native';
 import {useAppSelector} from "../../hooks/useAppSelector";
 import HeaderTab from "../../UI/HeaderTab/HeaderTab";
@@ -10,11 +10,20 @@ import CommunicationButtons from './CommunicationButtons/CommunicationButtons';
 import TransactionAdvantages from "./TransactionAdvantages/TransactionAdvantages";
 import ButtonBuy from "./ButtonBuy/ButtonBuy";
 import DescriptionProduct from './DescriptionProduct/DescriptionProduct';
-import {selectProductState} from "../../store/reducers/productSlice/productSlice";
+import {selectProductCategoryState, selectProductState} from "../../store/reducers/productSlice/productSlice";
+import {useAppDispatch} from "../../hooks/useAppDispatch";
+import {fetchProductCategory} from "../../store/reducers/productSlice/asyncAction";
 
 const ProductScreen = () => {
   const styles = useProductScreenStyles();
-  const { activeProduct } = useAppSelector(selectProductState);
+  const dispatch = useAppDispatch();
+  const activeProduct  = useAppSelector(selectProductState);
+  const categoryArray = useAppSelector(selectProductCategoryState).category;
+
+  useEffect(() => {
+      dispatch(fetchProductCategory());
+  },[])
+
 
   if (!activeProduct) {
       return (
@@ -24,18 +33,49 @@ const ProductScreen = () => {
       )
   }
 
-  console.log(activeProduct)
+
+  const photos = JSON.parse(activeProduct.photo);
+  const communication = JSON.parse(activeProduct.communication);
+
+  const alias = activeProduct.category_id.split(',');
+  const getMoreCategory = (category, category2, category3) => {
+    if (category && categoryArray) {
+
+        // Категории первой вложенности
+        const categoryArrOne = categoryArray.find(item => item.alias === category)
+
+        // Категории второй вложенности
+        if (category2) {
+
+            const categoryArrTwo = categoryArrOne?.children.find(item => item.alias === category2);
+
+            // Категории третьей вложенности
+            if (category3) {
+                return categoryArrTwo?.children.find(item => item.alias === category3);
+
+            }
+
+            return categoryArrTwo
+        }
+
+        return categoryArrOne
+    }
+
+  };
+
+  const category = getMoreCategory(alias[0], alias[1], alias[2]).additional_fields
+
   const advantage = ['delivery', 'safeTransaction'];
 
   return (
       <View style={styles.container}>
           <HeaderTab title={''} children={<ButtonsHeaderProduct />}/>
-          <ImageSwiperProduct photos={activeProduct.post_photo_v2} />
+          <ImageSwiperProduct photos={photos.photos} />
           <InfoProduct data={activeProduct}/>
-          {activeProduct.manager_phone && <CommunicationButtons phone={activeProduct.manager_phone}/>}
+          <CommunicationButtons phone={activeProduct.user_phone} communication={communication} />
           <TransactionAdvantages advantages={advantage}/>
           <ButtonBuy />
-          <DescriptionProduct address={activeProduct.address}/>
+          {activeProduct.address && <DescriptionProduct address={activeProduct.address}/>}
       </View>
   );
 

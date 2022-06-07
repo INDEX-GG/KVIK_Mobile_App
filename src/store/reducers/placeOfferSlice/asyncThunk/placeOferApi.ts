@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { kvikAxiosJSON } from '../../../../http/customAxios';
+import {kvikAxios} from '../../../../http/customAxios';
 import { IAdditionalFieldsFetchJSON } from '../../../../models/IAdditionalFieldsModel';
 
 interface IMore {
@@ -13,7 +13,7 @@ export const fetchMoreAdditionalFields = createAsyncThunk(
   'placeOfferSlice/more',
   async (data: IMoreData, thunkAPI) => {
     try {
-      const response = await kvikAxiosJSON
+      const response = await kvikAxios
         .get<IMore>(`/auto_brand/${data.jsonName}.json`);
       return response.data;
     } catch (e) {

@@ -59,7 +59,7 @@ export const fetchUserLogin = createAsyncThunk(
     try {
       const response = await kvikAxios
         .post<ILoginRespSuccess>(
-          'getUser?new',
+          'api/getUser?new',
           { id: data.id },
           {
             withCredentials: true,

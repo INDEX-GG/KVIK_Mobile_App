@@ -1,14 +1,16 @@
-import {IAdCardModel} from "../../../models/IAdCardModel";
 import { createSlice } from "@reduxjs/toolkit";
-import {AppStore} from "../../store";
-import { fetchProductAd } from "./asyncAction";
+import { RootState} from "../../store";
+import {fetchProductAd, fetchProductCategory} from "./asyncAction";
+import {ProductType} from "../../../types/producDataTypes";
 
 type InitialState = {
-    activeProduct: undefined | null;
+    activeProduct: ProductType | null;
+    activeCategory: any
 }
 
 const initialState: InitialState = {
     activeProduct: null,
+    activeCategory: null,
 }
 
 
@@ -17,15 +19,20 @@ export const productSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers (builder) {
-        builder.addCase(fetchProductAd.fulfilled, (state, {payload}) => {
-            state.activeProduct = payload
-        })
+        builder
+            .addCase(fetchProductAd.fulfilled, (state, {payload}) => {
+                state.activeProduct = payload
+            })
+            .addCase(fetchProductCategory.fulfilled, (state, {payload}) => {
+                state.activeCategory = payload;
+            })
 
     }
  })
 
-const productState = (state: AppStore) => state.productReducer
+const productState = (state: RootState) => state.productReducer
 
-export const selectProductState = (state: AppStore) => productState(state).activeProduct
+export const selectProductState = (state: RootState) => productState(state).activeProduct;
+export const selectProductCategoryState = (state: RootState) => productState(state).activeCategory;
 
 export default productSlice.reducer;
