@@ -291,8 +291,6 @@ PODS:
     - React-Core
   - react-native-cameraroll (4.1.2):
     - React-Core
-  - react-native-image-picker (4.8.3):
-    - React-Core
   - react-native-safe-area-context (3.3.2):
     - React-Core
   - React-perflogger (0.67.1)
@@ -461,7 +459,6 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - react-native-camera (from `../node_modules/react-native-camera`)
   - "react-native-cameraroll (from `../node_modules/@react-native-community/cameraroll`)"
-  - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -545,8 +542,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-camera"
   react-native-cameraroll:
     :path: "../node_modules/@react-native-community/cameraroll"
-  react-native-image-picker:
-    :path: "../node_modules/react-native-image-picker"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   React-perflogger:
@@ -628,7 +623,6 @@ SPEC CHECKSUMS:
   React-logger: b08f354e4c928ff794ca477347fea0922aaf11c3
   react-native-camera: 210a872c84d3aa0982a9223047ef9e743ed694fa
   react-native-cameraroll: 60ac50a5209777cbccfe8d7a62d0743a9da87060
-  react-native-image-picker: eb0a159c2a00bcfb49f0469fcc6b164329e9d4ca
   react-native-safe-area-context: 5cf05f49df9d17261e40e518481f2e334c6cd4b5
   React-perflogger: 9a6172711d9c4c8c7ac0a426717317c3c6ecf85c
   React-RCTActionSheet: ed408b54b08278e6af8a75e08679675041da61ae
@@ -656,6 +650,6 @@ SPEC CHECKSUMS:
   Yoga: 5cbf25add73edb290e1067017690f7ebf56c5468
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 33d6351da236f46dfeecde2f70eae9f6c1a8c40d
+PODFILE CHECKSUM: e10f9675b03892d633ddb60b3f7318d0afe2855c
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.11.2

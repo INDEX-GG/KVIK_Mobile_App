@@ -8,7 +8,6 @@ import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.rnfs.RNFSPackage;
 import com.reactnativecommunity.cameraroll.CameraRollPackage;
-import com.imagepicker.ImagePickerPackage;
 import com.oblador.keychain.KeychainPackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
