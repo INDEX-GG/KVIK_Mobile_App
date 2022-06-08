@@ -20,6 +20,7 @@ const PlaceOfferTitle = () => {
       required={{ state: true, value: '' }}
       customStyle={{
         container: styles.defaultFieldsTextInput,
+        containerError: styles.containerError,
         error: styles.error,
         label: styles.label,
         inputColor: { color: styles.placeHolderColor.color },

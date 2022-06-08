@@ -10,6 +10,7 @@ import { useCurrentTheme } from '../../hooks/useTheme';
 const CheckBoxBooleanUI: FC<ICheckBoxBooleanUIProps> = ({
   title,
   alias,
+  defaultValue = false,
   required,
   isVisibleBorderBottom = true,
 }) => {
@@ -33,6 +34,7 @@ const CheckBoxBooleanUI: FC<ICheckBoxBooleanUIProps> = ({
     <Controller
       name={alias}
       control={control}
+      defaultValue={defaultValue}
       rules={{ required: required?.state }}
       render={({ field: { value, onChange }, fieldState: { error } }) => (
         <TouchableOpacity

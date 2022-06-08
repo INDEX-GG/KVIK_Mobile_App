@@ -7,6 +7,7 @@ const TextUIStyles = () => {
     container: {
       position: 'relative',
     },
+    containerError: {},
     inputContainer: {
       paddingVertical: 20,
       position: 'relative',

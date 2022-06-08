@@ -28,6 +28,7 @@ const PlaceOfferDescription = () => {
       required={{ state: true, value: '' }}
       customStyle={{
         error: styles.error,
+        containerError: styles.containerError,
         container: containerStyles,
         label: styles.label,
         inputColor: { color: styles.placeHolderColor.color },

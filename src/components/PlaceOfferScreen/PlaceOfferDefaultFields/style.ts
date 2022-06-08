@@ -3,7 +3,7 @@ import { useCurrentTheme } from '../../../hooks/useTheme';
 import { useDevice } from '../../../hooks/useDevice';
 
 const PlaceOfferDefaultFieldsStyles = () => {
-  const { isDark, theme } = useCurrentTheme();
+  const { isDark, theme, anyThem } = useCurrentTheme();
   const { isIos } = useDevice();
   const color = isDark ? '#FFFFFF' : '#8F8F8F';
   return StyleSheet.create({
@@ -17,7 +17,13 @@ const PlaceOfferDefaultFieldsStyles = () => {
       paddingHorizontal: 12,
       backgroundColor: isDark ? '#363636' : '#FFFFFF',
       borderRadius: 10,
+      borderWidth: 2,
+      borderColor: isDark ? '#363636' : '#FFFFFF',
       position: 'relative',
+    },
+    containerError: {
+      borderWidth: 2,
+      borderColor: anyThem.errorColor,
     },
     placeHolderColor: {
       color: color,

@@ -7,14 +7,23 @@ import { usePhotoPlaceholderStyles } from './style';
 interface IPhotoPlaceholderPhoto {
   size: 'small' | 'big';
   onPress: () => void;
+  isError?: boolean;
 }
 
-const PhotoPlaceholder: FC<IPhotoPlaceholderPhoto> = ({ size, onPress }) => {
+const PhotoPlaceholder: FC<IPhotoPlaceholderPhoto> = ({
+  size,
+  onPress,
+  isError,
+}) => {
   const styles = usePhotoPlaceholderStyles();
-  const styleContainer = useMemo(
-    () => (size === 'small' ? styles.smallContainer : styles.container),
-    [styles, size]
-  );
+  const styleContainer = useMemo(() => {
+    const containerSize =
+      size === 'small' ? styles.smallContainer : styles.container;
+    const containerError = isError
+      ? { ...containerSize, ...styles.errorContainer }
+      : containerSize;
+    return containerError;
+  }, [styles, size, isError]);
 
   return (
     <>

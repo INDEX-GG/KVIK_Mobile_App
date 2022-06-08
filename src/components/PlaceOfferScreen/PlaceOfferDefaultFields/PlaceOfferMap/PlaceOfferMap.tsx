@@ -4,7 +4,7 @@ import PlaceOfferModal from '../PlaceOfferModal/PlaceOfferModal';
 
 const PlaceOfferMap = () => {
   return (
-    <PlaceOfferModal text={'Местоположение'}>
+    <PlaceOfferModal text={'Местоположение'} onToggle={() => console.log(123)}>
       <View />
     </PlaceOfferModal>
   );

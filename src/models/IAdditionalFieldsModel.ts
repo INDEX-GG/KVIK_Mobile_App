@@ -76,6 +76,7 @@ export interface IAdditionalFieldsItem {
 interface ICheckBoxBooleanUI {
   alias: string;
   title: string;
+  defaultValue?: boolean;
   required?: RequiredType;
 }
 
@@ -87,7 +88,7 @@ export type ITextCustomStyles = {
     container: {};
     label: {};
     error: {};
-    errorInputContainer: {},
+    containerError: {};
     inputContainer: ViewStyle;
     inputColor: {
       color: string;

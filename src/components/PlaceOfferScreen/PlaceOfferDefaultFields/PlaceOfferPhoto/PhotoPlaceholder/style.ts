@@ -2,7 +2,8 @@ import { StyleSheet } from 'react-native';
 import { useCurrentTheme } from '../../../../../hooks/useTheme';
 
 const PhotoPlaceholderStyles = () => {
-  const { isDark } = useCurrentTheme();
+  const { isDark, anyThem } = useCurrentTheme();
+  const color = isDark ? '#5A5A5A' : '#E9E9E9';
   return StyleSheet.create({
     container: {
       display: 'flex',
@@ -11,9 +12,11 @@ const PhotoPlaceholderStyles = () => {
       alignItems: 'center',
       justifyContent: 'center',
       minHeight: 130,
-      backgroundColor: isDark ? '#5A5A5A' : '#E9E9E9',
+      backgroundColor: color,
       borderRadius: 10,
       marginBottom: 10,
+      borderWidth: 2,
+      borderColor: color,
     },
     smallContainer: {
       padding: 6,
@@ -23,7 +26,11 @@ const PhotoPlaceholderStyles = () => {
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: isDark ? '#5A5A5A' : '#E9E9E9',
+      backgroundColor: color,
+    },
+    errorContainer: {
+      borderWidth: 2,
+      borderColor: anyThem.errorColor,
     },
     iconContainer: {
       marginBottom: 3,

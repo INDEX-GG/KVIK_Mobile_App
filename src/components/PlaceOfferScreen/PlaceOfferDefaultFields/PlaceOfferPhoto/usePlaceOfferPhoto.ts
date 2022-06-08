@@ -1,10 +1,12 @@
 import { useCameraStore } from '../../../../hooks/useReducerHook/useCameraStore';
 import { useEffect, useState } from 'react';
 import { usePlaceOfferStore } from '../../../../hooks/useReducerHook/usePlaceOfferStore';
+import { useFormContext } from 'react-hook-form';
 
 export const usePlaceOfferPhoto = () => {
   const { fileArray, isFilesArrayLength } = useCameraStore();
   const { importantPhoto, handleChangeImportantPhoto } = usePlaceOfferStore();
+  const { control, setValue } = useFormContext();
 
   const [isVisiblePhotoFiles, setIsVisiblePhotoFiles] =
     useState<boolean>(false);
@@ -14,6 +16,8 @@ export const usePlaceOfferPhoto = () => {
   };
 
   useEffect(() => {
+    const fileArrayLength = fileArray.length;
+    setValue('photos', fileArrayLength ? fileArray : undefined);
     if (isFilesArrayLength && !importantPhoto) {
       handleChangeImportantPhoto(fileArray[0])();
       return;
@@ -28,6 +32,7 @@ export const usePlaceOfferPhoto = () => {
   }, [importantPhoto, fileArray]);
 
   return {
+    control,
     fileArray,
     isVisiblePhotoFiles,
     isFilesArrayLength,

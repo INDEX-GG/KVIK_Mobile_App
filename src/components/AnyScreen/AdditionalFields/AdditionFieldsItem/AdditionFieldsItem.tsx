@@ -18,8 +18,6 @@ import PeriodUI from '../../../../UI/PeriodUI/PeriodUI';
 import TimeTextListUI from '../../../../UI/TimeTextListUI/TimeTextListUI';
 
 const AdditionFieldsItem: FC<IAdditionalFieldsItem> = (props) => {
-  const { type, dependencies } = props;
-
   const {
     isText,
     isNumber,
@@ -29,8 +27,7 @@ const AdditionFieldsItem: FC<IAdditionalFieldsItem> = (props) => {
     isPeriod,
     isCheckList,
     isVisible,
-  } = useAdditionFieldsItem(type, dependencies);
-
+  } = useAdditionFieldsItem(props);
 
   return isVisible ? (
     <>

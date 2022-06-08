@@ -9,6 +9,7 @@ const PlaceOfferContact = () => {
       alias={'contact'}
       type={'check_list'}
       default_value={checkListValues}
+      required={{ state: true, value: '' }}
       title={'Спопособ связи'}
       dependencies={[]}
       check_list_values={checkListValues}

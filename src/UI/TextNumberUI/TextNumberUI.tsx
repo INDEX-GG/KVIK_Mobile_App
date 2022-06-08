@@ -5,7 +5,6 @@ import { useTextUIStyles } from '../TextUI/style';
 import { useTextNumber } from './useTextNumberUI';
 import { Controller } from 'react-hook-form';
 import UbuntuTextUI from '../UbuntuTextUI/UbuntuTextUI';
-import { useCurrentTheme } from '../../hooks/useTheme';
 
 const TextNumberUI: FC<ITextNumberUIProps> = (props) => {
   const {
@@ -16,8 +15,8 @@ const TextNumberUI: FC<ITextNumberUIProps> = (props) => {
     required,
   } = props;
   const styles = customStyle ? customStyle : useTextUIStyles();
-  const { control, handleChangeText, placeholderTitle } = useTextNumber(props);
-  const { anyThem } = useCurrentTheme();
+  const { control, handleChangeText, placeholderTitle, anyThem } =
+    useTextNumber(props);
 
   return (
     <Controller
@@ -27,7 +26,12 @@ const TextNumberUI: FC<ITextNumberUIProps> = (props) => {
       rules={{ required: required?.state }}
       render={({ field: { value, onChange }, fieldState: { error } }) => {
         return (
-          <View style={styles.container}>
+          <View
+            style={{
+              ...styles.container,
+              ...(error ? styles.containerError : {}),
+            }}
+          >
             {value && !error ? (
               <UbuntuTextUI
                 fontWeight={400}

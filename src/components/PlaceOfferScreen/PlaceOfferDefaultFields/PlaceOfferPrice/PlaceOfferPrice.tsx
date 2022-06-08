@@ -28,6 +28,7 @@ const PlaceOfferPrice = () => {
         required={{ state: true, value: '' }}
         customStyle={{
           container: textNumberStyles.defaultFieldsTextInput,
+          containerError: textNumberStyles.containerError,
           label: textNumberStyles.label,
           error: textNumberStyles.error,
           inputColor: { color: textNumberStyles.placeHolderColor.color },
@@ -41,6 +42,7 @@ const PlaceOfferPrice = () => {
         <CheckBoxBooleanUI
           title="Торг"
           alias="trade"
+          defaultValue={false}
           isVisibleBorderBottom={false}
         />
       </View>
@@ -57,6 +59,6 @@ const styles = StyleSheet.create({
   checkboxContainer: {
     position: 'absolute',
     right: 13,
-    top: 23,
+    top: 25,
   },
 });

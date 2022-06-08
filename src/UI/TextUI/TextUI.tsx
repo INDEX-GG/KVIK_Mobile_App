@@ -19,7 +19,12 @@ const TextUI: FC<ITextUIProps> = (props) => {
       control={control}
       rules={{ required: required?.state }}
       render={({ field: { value, onChange }, fieldState: { error } }) => (
-        <View style={styles.container}>
+        <View
+          style={{
+            ...styles.container,
+            ...(error ? styles.containerError : {}),
+          }}
+        >
           {value && !error ? (
             <UbuntuTextUI fontWeight={400} textProps={{ style: styles.label }}>
               {title}

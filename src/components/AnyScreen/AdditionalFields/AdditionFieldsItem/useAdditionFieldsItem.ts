@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 import { findDependenciesInFormValues } from '../../../../services/services';
 import { useWatch } from 'react-hook-form';
-import { PlaceOfferAdditionalFields } from '../../../../models/IAdditionalFieldsModel';
+import { IAdditionalFieldsItem } from '../../../../models/IAdditionalFieldsModel';
 
-export const useAdditionFieldsItem = (type: PlaceOfferAdditionalFields, dependencies: string[] | undefined) => {
-
+export const useAdditionFieldsItem = (data: IAdditionalFieldsItem) => {
+  const { type, dependencies } = data;
   const formValues = useWatch() as any;
 
   const isTextList = useMemo(() => type === 'text_list', [type]);

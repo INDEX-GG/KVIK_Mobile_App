@@ -21,7 +21,6 @@ export const CustomInputStyles = () => {
       width: '100%',
       color: theme.color000ToFFF.color,
       marginBottom: 2,
-      fontFamily: 'Roboto-Regular',
     },
     errorMessage: {
       fontSize: fontSize.little,
