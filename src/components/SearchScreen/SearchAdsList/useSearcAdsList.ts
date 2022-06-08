@@ -4,6 +4,7 @@ import { fetchHomeAd } from '../../../store/reducers/homeAdSlice/asyncAction';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { homeAdSlice } from '../../../store/reducers/homeAdSlice/homeAdSlice';
 import { ADS_LIMIT, DEFAULT_REGION } from '../../../constants/constants';
+import {fetchProductCategory} from "../../../store/reducers/productSlice/asyncAction";
 
 export const useSearchAdsList = () => {
   const {
@@ -35,6 +36,7 @@ export const useSearchAdsList = () => {
             user_id,
           })
         );
+        dispatch(fetchProductCategory());
       }
     }
   };
