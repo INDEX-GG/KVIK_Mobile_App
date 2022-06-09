@@ -1,10 +1,11 @@
 import React, { FC, useMemo } from 'react';
 import { Text, TextProps } from 'react-native';
+import { textWeight } from '../../types/types';
 
 interface IUbuntuTextUIProps {
   children: React.ReactChildren | React.ReactNode;
   textProps?: TextProps;
-  fontWeight?: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
+  fontWeight?: textWeight;
   fontStyle?: 'italic' | 'normal';
 }
 

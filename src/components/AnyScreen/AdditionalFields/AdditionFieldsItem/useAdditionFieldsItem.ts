@@ -1,13 +1,24 @@
 import { useMemo } from 'react';
 import { findDependenciesInFormValues } from '../../../../services/services';
 import { useWatch } from 'react-hook-form';
-import { PlaceOfferAdditionalFields } from '../../../../models/IAdditionalFieldsModel';
+import {
+  IAdditionalFieldsItem,
+  ITextListAdditionalFields,
+} from '../../../../models/IAdditionalFieldsModel';
 
-export const useAdditionFieldsItem = (type: PlaceOfferAdditionalFields, dependencies: string[] | undefined) => {
-
+export const useAdditionFieldsItem = (data: IAdditionalFieldsItem) => {
+  const { type, dependencies } = data;
   const formValues = useWatch() as any;
 
   const isTextList = useMemo(() => type === 'text_list', [type]);
+  const isTextListRenderType = useMemo(() => {
+    if (isTextList) {
+      const textListData = data as ITextListAdditionalFields &
+        IAdditionalFieldsItem;
+      return textListData.text_list_rendering_type;
+    }
+    return 0;
+  }, [isTextList]);
   const isText = useMemo(() => type === 'text', [type]);
   const isNumber = useMemo(() => type === 'number', [type]);
   const isCheckList = useMemo(() => type === 'check_list', [type]);
@@ -32,5 +43,6 @@ export const useAdditionFieldsItem = (type: PlaceOfferAdditionalFields, dependen
     isBoolean,
     isTextList,
     isCheckList,
+    isTextListRenderType,
   };
 };

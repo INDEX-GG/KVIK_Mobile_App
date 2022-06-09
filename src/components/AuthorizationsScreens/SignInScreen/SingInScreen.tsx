@@ -48,6 +48,7 @@ const SingInScreen = () => {
         const response = loginData.payload as unknown as
           | 'user login'
           | 'Ошибка api mobile/checkUser';
+        console.log(response);
         if (response === 'user login') {
           dispatch(tokenSlice.actions.updateUser());
         }

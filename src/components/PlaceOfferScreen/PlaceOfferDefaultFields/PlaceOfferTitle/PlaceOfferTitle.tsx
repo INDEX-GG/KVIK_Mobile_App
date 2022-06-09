@@ -1,15 +1,15 @@
 import React from 'react';
-import { usePlaceOfferDefaultFieldsStyles} from "../style";
-import TextUI from "../../../../UI/TextUI/TextUI";
+import { usePlaceOfferDefaultFieldsStyles } from '../style';
+import TextUI from '../../../../UI/TextUI/TextUI';
 
 const PlaceOfferTitle = () => {
   const styles = usePlaceOfferDefaultFieldsStyles();
 
   return (
     <TextUI
-      type='text'
-      alias='title'
-      title='Название'
+      type="text"
+      alias="title"
+      title="Название"
       text_excludes_symbols={[]}
       text_includes_symbols={[]}
       text_max_len={100}
@@ -17,11 +17,13 @@ const PlaceOfferTitle = () => {
       view_product={false}
       default_value={''}
       dependencies={undefined}
-      required={{state: true, value: 'Заполните название объявления'}}
+      required={{ state: true, value: '' }}
       customStyle={{
         container: styles.defaultFieldsTextInput,
+        containerError: styles.containerError,
+        error: styles.error,
         label: styles.label,
-        inputColor: {color: styles.placeHolderColor.color},
+        inputColor: { color: styles.placeHolderColor.color },
         inputContainer: styles.inputContainer,
       }}
     />

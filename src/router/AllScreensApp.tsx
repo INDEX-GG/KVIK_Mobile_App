@@ -15,7 +15,6 @@ import ProductScreen from '../screens/ProductScreen/ProductScreen';
 import PlaceOfferNewAd from '../components/PlaceOfferScreen/PlaceOfferNewAd/PlaceOfferNewAd';
 import PlaceOfferAdditionalFields from '../components/PlaceOfferScreen/PlaceOfferAdditionalFields/PlaceOfferAdditionalFields';
 import { usePlaceOfferStore } from '../hooks/useReducerHook/usePlaceOfferStore';
-import ButtonsHeaderProduct from "../components/AnyScreen/CustomHeaders/ButtonsHeaderProduct/ButtonsHeaderProduct";
 
 interface Screens {
   name: string;

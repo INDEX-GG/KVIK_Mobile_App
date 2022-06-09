@@ -1,19 +1,11 @@
 import React from 'react';
 import ScreenScroll from '../../AnyScreen/ScreenScroll';
 import PlaceOfferCategory from '../PlaceOfferCategory/PlaceOfferCategory';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FormProvider } from 'react-hook-form';
+import { usePlaceOfferNewAd } from './usePlaceOfferNewAd';
 
 const PlaceOfferNewAd = () => {
-  const methods = useForm<IFormStatePlaceOfferCategory>({
-    defaultValues: {
-      category1: undefined,
-      category2: undefined,
-      category3: undefined,
-      category1Length: undefined,
-      category2Length: undefined,
-      additionalFields: null,
-    },
-  });
+  const { methods } = usePlaceOfferNewAd();
 
   return (
     <ScreenScroll scroll={true}>

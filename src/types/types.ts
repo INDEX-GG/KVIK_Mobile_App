@@ -21,4 +21,6 @@ export type AppLocation =
 
 export type onChangeText = (text: string) => void;
 
-export type NumberType = 'int' | 'float'
+export type NumberType = 'int' | 'float';
+
+export type textWeight = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;

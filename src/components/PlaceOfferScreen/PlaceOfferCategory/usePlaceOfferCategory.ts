@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { kvikAxiosV2 } from '../../../http/customAxios';
 import {
   IPlaceOfferCategoryItem,
   IPlaceOfferCategoryModel,
@@ -19,6 +18,7 @@ import { useFormContext } from 'react-hook-form';
 import { generateBottomSheetHeight } from '../../../services/services';
 import { usePlaceOfferStore } from '../../../hooks/useReducerHook/usePlaceOfferStore';
 import { useRouter } from '../../../hooks/useRouter';
+import {kvikAxios} from "../../../http/customAxios";
 
 export const usePlaceOfferCategory = () => {
   const { deviceHeight } = useSize();
@@ -102,8 +102,8 @@ export const usePlaceOfferCategory = () => {
 
   useEffect(() => {
     try {
-      kvikAxiosV2
-        .get<IPlaceOfferCategoryModel>('placeOfferJson/new_catalog.json')
+      kvikAxios
+        .get<IPlaceOfferCategoryModel>('/placeOfferJson/new_catalog.json')
         .then((jsonData) => {
           setCategory(jsonData.data.category);
           setValue('category1Length', jsonData.data.category?.length);

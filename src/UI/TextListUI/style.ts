@@ -2,9 +2,7 @@ import { StyleSheet } from 'react-native';
 import { useCurrentTheme } from '../../hooks/useTheme';
 
 const TextListUIStyles = () => {
-  const {
-    isDark,
-  } = useCurrentTheme();
+  const { isDark } = useCurrentTheme();
 
   return StyleSheet.create({
     container: {
@@ -19,7 +17,6 @@ const TextListUIStyles = () => {
       alignItems: 'center',
       justifyContent: 'space-between',
       paddingVertical: 20,
-
     },
     label: {
       fontSize: 13,
@@ -32,7 +29,7 @@ const TextListUIStyles = () => {
       marginRight: 15,
     },
     arrowDefault: {
-      transform: [{rotate: '0deg'}],
+      transform: [{ rotate: '0deg' }],
     },
     containerActive: {
       backgroundColor: '#00A0AB',

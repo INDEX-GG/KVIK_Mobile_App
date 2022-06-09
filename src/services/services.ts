@@ -6,7 +6,7 @@ export const checkArray = (arr: any[]) => {
 
 export const getStringArrayInObjectArray = (arr: any[], key: string) => {
   if (Array.isArray(arr)) {
-    return arr.map(item => item[key]);
+    return arr.map((item) => item[key]);
   }
   return arr;
 };
@@ -82,7 +82,7 @@ export const dynamicPhotosArr = (
   }
 };
 
-export const getOnlyNumberString = (str: string, type: NumberType ) => {
+export const getOnlyNumberString = (str: string, type: NumberType) => {
   const regExp = type === 'int' ? /[^0-9]/g : /[^0-9.]/g;
   return str.replace(regExp, '');
 };
@@ -212,7 +212,7 @@ export const generateBottomSheetHeight = (
   allElement: number,
   sizeOneElement: number,
   deviceHeight: number,
-  moreHeight = 0,
+  moreHeight = 0
 ) => {
   const height = allElement * sizeOneElement;
   const maxHeight = deviceHeight - 150;
@@ -237,7 +237,10 @@ export const getDynamicTittle = (
   return value ? value : title;
 };
 
-export const findDependenciesInFormValues = (dependencies: string[], formValues: any) => {
+export const findDependenciesInFormValues = (
+  dependencies: string[],
+  formValues: any
+) => {
   if (Array.isArray(dependencies)) {
     let isVisible = true;
     for (let i = 0; i < dependencies.length; i++) {
@@ -255,6 +258,8 @@ export const findDependenciesInFormValues = (dependencies: string[], formValues:
 
 export const filterArrayString = (arr: any[], searchString: string) => {
   if (Array.isArray(arr)) {
-    return arr.filter(item => item.toLowerCase().includes(searchString.toLowerCase()));
+    return arr.filter((item) =>
+      item.toLowerCase().includes(searchString.toLowerCase())
+    );
   }
 };

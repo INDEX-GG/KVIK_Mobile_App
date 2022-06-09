@@ -2,11 +2,12 @@ import { StyleSheet } from 'react-native';
 import { useCurrentTheme } from '../../hooks/useTheme';
 
 const TextUIStyles = () => {
-  const { isDark } = useCurrentTheme();
+  const { isDark, anyThem } = useCurrentTheme();
   return StyleSheet.create({
     container: {
       position: 'relative',
     },
+    containerError: {},
     inputContainer: {
       paddingVertical: 20,
       position: 'relative',
@@ -25,7 +26,14 @@ const TextUIStyles = () => {
       position: 'absolute',
       top: 2,
       left: 0,
-    }
+    },
+    error: {
+      fontSize: 13,
+      color: anyThem.errorColor,
+      position: 'absolute',
+      top: 2,
+      left: 0,
+    },
   });
 };
 

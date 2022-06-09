@@ -1,4 +1,4 @@
-import { TextInputProps } from "react-native";
+import { TextInputProps, ViewStyle } from 'react-native';
 
 export type PlaceOfferAdditionalFields =
   | 'text_list'
@@ -9,10 +9,15 @@ export type PlaceOfferAdditionalFields =
   | 'period'
   | 'text_list_time';
 
+export type RequiredType = {
+  state: boolean;
+  value: string;
+};
+
 export interface ILastJsonChildren {
-  alias: string,
-  name: string,
-  value: string | string[],
+  alias: string;
+  name: string;
+  value: string | string[];
 }
 
 export interface IAdditionalFieldsFetchJSON {
@@ -23,9 +28,9 @@ export interface IAdditionalFieldsFetchJSON {
 }
 
 export interface ICheckListAdditionalFields {
-  check_list_values: string[],
-  filter_view: false,
-  dependencies: string[],
+  check_list_values: string[];
+  filter_view: false;
+  dependencies: string[];
 }
 
 export interface ITextNumberAdditionalFields {
@@ -38,15 +43,15 @@ export interface ITextNumberAdditionalFields {
   number_step: {};
   number_unit_of_measure: string;
   number_version: 'int' | 'float';
-  placeholder: string
+  placeholder: string;
 }
 
 export interface ITextAdditionalFields {
-  text_excludes_symbols: string[],
-  text_includes_symbols: string[],
-  text_max_len: number,
-  text_min_len: number,
-  view_product: boolean,
+  text_excludes_symbols: string[];
+  text_includes_symbols: string[];
+  text_max_len: number;
+  text_min_len: number;
+  view_product: boolean;
 }
 
 export interface ITextListAdditionalFields {
@@ -64,45 +69,55 @@ export interface IAdditionalFieldsItem {
   title: string;
   dependencies?: string[];
   filter_title?: string;
-  default_value?: null | string;
-  required?: {
-    state: boolean;
-    value: string;
-  };
+  default_value?: null | string | string[];
+  required?: RequiredType;
 }
 
 interface ICheckBoxBooleanUI {
   alias: string;
   title: string;
+  defaultValue?: boolean;
+  required?: RequiredType;
 }
 
-export type ITextListIsCheckList = {isCheckList?: boolean}
-export type ITextListIsPeriod = {isPeriod?: boolean}
-export type ITextListIsTime = {isTime?: boolean}
+export type ITextListIsCheckList = { isCheckList?: boolean };
+export type ITextListIsPeriod = { isPeriod?: boolean };
+export type ITextListIsTime = { isTime?: boolean };
 export type ITextCustomStyles = {
   customStyle?: {
-    container: {},
-    label: {},
-    inputContainer: {},
+    container: {};
+    label: {};
+    error: {};
+    containerError: {};
+    inputContainer: ViewStyle;
     inputColor: {
       color: string;
-    }
-  },
-  textNativeProps?: TextInputProps,
-}
+    };
+  };
+  textNativeProps?: TextInputProps;
+};
 interface ICheckboxBooleanDetails {
   isVisibleBorderBottom?: boolean;
 }
 
-export type ITextUIProps = IAdditionalFieldsItem & ITextAdditionalFields & ITextCustomStyles
+export type ITextUIProps = IAdditionalFieldsItem &
+  ITextAdditionalFields &
+  ITextCustomStyles;
 
-export type ITextNumberUIProps = IAdditionalFieldsItem & ITextNumberAdditionalFields & ITextCustomStyles
+export type ITextNumberUIProps = IAdditionalFieldsItem &
+  ITextNumberAdditionalFields &
+  ITextCustomStyles;
 
-export type ICheckBoxBooleanUIProps = ICheckBoxBooleanUI & ICheckboxBooleanDetails
+export type ICheckBoxBooleanUIProps = ICheckBoxBooleanUI &
+  ICheckboxBooleanDetails;
 
-export type IPeriodUIProps = ICheckListUIProps
+export type IPeriodUIProps = ICheckListUIProps;
 
-export type ICheckListUIProps = IAdditionalFieldsItem & ICheckListAdditionalFields
+export type ICheckListUIProps = IAdditionalFieldsItem &
+  ICheckListAdditionalFields;
 
 export type ITextListUIProps = ITextListAdditionalFields &
-  IAdditionalFieldsItem & ITextListIsCheckList & ITextListIsPeriod & ITextListIsTime;
+  IAdditionalFieldsItem &
+  ITextListIsCheckList &
+  ITextListIsPeriod &
+  ITextListIsTime;
