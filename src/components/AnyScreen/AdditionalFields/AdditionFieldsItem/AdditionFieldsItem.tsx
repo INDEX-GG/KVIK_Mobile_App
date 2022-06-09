@@ -31,34 +31,35 @@ const AdditionFieldsItem: FC<IAdditionalFieldsItem> = (props) => {
     isTextListRenderType,
   } = useAdditionFieldsItem(props);
 
-  return isVisible ? (
+  return true ? (
     <>
       {isTextList &&
         (isTextListRenderType ? (
           <SelectColorUI />
         ) : (
-          <TextListUI
-            {...(props as IAdditionalFieldsItem & ITextListAdditionalFields)}
-          />
+          // <TextListUI
+          //   {...(props as IAdditionalFieldsItem & ITextListAdditionalFields)}
+          // />
+          null
         ))}
-      {isText && (
-        <TextUI {...(props as IAdditionalFieldsItem & ITextAdditionalFields)} />
-      )}
-      {isNumber && (
-        <TextNumberUI
-          {...(props as IAdditionalFieldsItem & ITextNumberAdditionalFields)}
-        />
-      )}
-      {isCheckList && <CheckListUI {...(props as ICheckListUIProps)} />}
-      {isBoolean && (
-        <CheckBoxBooleanUI
-          alias={props.alias}
-          title={props.title}
-          required={props.required}
-        />
-      )}
-      {isPeriod && <PeriodUI {...(props as IPeriodUIProps)} />}
-      {isTime && <TimeTextListUI {...(props as ITextListUIProps)} />}
+      {/*{isText && (*/}
+      {/*  <TextUI {...(props as IAdditionalFieldsItem & ITextAdditionalFields)} />*/}
+      {/*)}*/}
+      {/*{isNumber && (*/}
+      {/*  <TextNumberUI*/}
+      {/*    {...(props as IAdditionalFieldsItem & ITextNumberAdditionalFields)}*/}
+      {/*  />*/}
+      {/*)}*/}
+      {/*{isCheckList && <CheckListUI {...(props as ICheckListUIProps)} />}*/}
+      {/*{isBoolean && (*/}
+      {/*  <CheckBoxBooleanUI*/}
+      {/*    alias={props.alias}*/}
+      {/*    title={props.title}*/}
+      {/*    required={props.required}*/}
+      {/*  />*/}
+      {/*)}*/}
+      {/*{isPeriod && <PeriodUI {...(props as IPeriodUIProps)} />}*/}
+      {/*{isTime && <TimeTextListUI {...(props as ITextListUIProps)} />}*/}
     </>
   ) : null;
 };
