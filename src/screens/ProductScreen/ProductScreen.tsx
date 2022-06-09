@@ -11,6 +11,8 @@ import TransactionAdvantages from "./TransactionAdvantages/TransactionAdvantages
 import ButtonBuy from "./ButtonBuy/ButtonBuy";
 import DescriptionProduct from './DescriptionProduct/DescriptionProduct';
 import {selectProductCategoryState, selectProductState} from "../../store/reducers/productSlice/productSlice";
+import Seller from "./Seller/Seller";
+import {ProductType} from "../../types/producDataTypes";
 
 
 const ProductScreen = () => {
@@ -30,11 +32,15 @@ const ProductScreen = () => {
   const advantage = ['delivery', 'safeTransaction'];
 
 
-
-
     const photos = JSON.parse(activeProduct.photo);
     const communication = JSON.parse(activeProduct.communication);
 
+    const seller = {
+        ...{name: activeProduct.user_name},
+        ...{photo: activeProduct.user_photo},
+        ...{rating: activeProduct.user_raiting},
+        ...{products: activeProduct.user_products},
+    }
 
   return (
       <ScrollView style={styles.container} nestedScrollEnabled={true}>
@@ -45,6 +51,7 @@ const ProductScreen = () => {
           <TransactionAdvantages advantages={advantage}/>
           <ButtonBuy />
           <DescriptionProduct data={activeProduct}/>
+          <Seller seller={seller} />
       </ScrollView>
   );
 
