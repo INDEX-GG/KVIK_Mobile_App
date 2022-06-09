@@ -10,6 +10,9 @@ const ProductScreenStyles = () => {
             borderTopRightRadius: 10,
             borderTopLeftRadius: 10,
             backgroundColor: isDark ? '#151515' : '#fff',
+        },
+        scrollView: {
+            backgroundColor: 'red',
         }
     })
 }

@@ -32,7 +32,7 @@ export const fetchUserSignIn = createAsyncThunk(
   async (data: ISignInReq, thunkAPI) => {
     try {
       const response = await kvikAxios
-        .post<ISignInRespSuccess>('mobile/checkUser', data)
+        .post<ISignInRespSuccess>('api/mobile/checkUser', data)
         .then((userData) => {
           const { data: loginData } = userData;
           if (loginData.idUser && loginData.jwt_refresh) {

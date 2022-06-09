@@ -26,9 +26,6 @@ const dictionaryAdvantages = {
     },
 }
 
-/*const renderAdvantage = ({advantage}: AdvantageProps ) => {
-    return <Advantage advantage={advantage} />
-}*/
 
 
 const TransactionAdvantages = ({advantages}: TransactionAdvantagesProps) => {

@@ -10,7 +10,7 @@ import CardAdTitle from './CardAdTitle/CardAdTitle';
 import CardAdPhoto from './CardAdPhoto/CardAdPhoto';
 import CardAdLike from './CardAdLike/CardAdLike';
 import {useAppDispatch} from "../../../hooks/useAppDispatch";
-import {fetchProductAd} from "../../../store/reducers/productSlice/asyncAction";
+import {fetchProductAd, fetchProductCategory} from "../../../store/reducers/productSlice/asyncAction";
 
 interface CardAdItemProps {
   adItem: IAdCardModel;

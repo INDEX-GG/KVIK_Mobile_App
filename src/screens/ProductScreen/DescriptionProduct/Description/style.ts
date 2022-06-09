@@ -1,26 +1,21 @@
 import {StyleSheet} from "react-native";
-import {useCurrentTheme} from "../../../../hooks/useTheme";
 
-const DescriptionAddressStyle = () => {
-    const { isDark } = useCurrentTheme();
-
+const DescriptionStyle = () => {
     return StyleSheet.create({
         container: {
+            paddingTop: 18,
+            paddingBottom: 10,
             marginHorizontal: 26,
-            flexDirection: "row",
-            justifyContent: "space-between",
-            paddingVertical: 22,
             borderBottomWidth: 2,
             borderBottomColor: '#5A5A5A',
         },
         text: {
             fontSize: 14,
             lineHeight: 16,
-            color: isDark ? '#FFF' : '#000',
-            width: '80%',
+            color: '#fff',
         },
         btn: {
-            width: '20%'
+            alignSelf: 'flex-end'
         },
         btnText: {
             fontSize: 14,
@@ -30,4 +25,5 @@ const DescriptionAddressStyle = () => {
     })
 }
 
-export const useDescriptionAddressStyle = () => DescriptionAddressStyle();
+
+export const useDescriptionStyle = () => DescriptionStyle();
