@@ -6,17 +6,17 @@ export const usePictureItem = (pictureItem: string) => {
     useCameraStore();
   const photoUri = useMemo(() => pictureItem, [pictureItem]);
   const isActive = useMemo(
-    () => fileArray?.find((item) => item === photoUri),
+    () => fileArray?.find((item) => item.uri === photoUri),
     [fileArray]
   );
 
-  const handlePressItem = (photoFile: string) => {
+  const handlePressItem = (photoFile: string, photoName: string) => {
     return () => {
       if (isActive) {
-        handleRemovePhotoFileInArray(photoFile);
+        handleRemovePhotoFileInArray({ uri: photoFile, fileName: photoName });
         return;
       }
-      handleAddPhotoFileInArray(photoFile);
+      handleAddPhotoFileInArray({ uri: photoFile, fileName: photoName });
     };
   };
 

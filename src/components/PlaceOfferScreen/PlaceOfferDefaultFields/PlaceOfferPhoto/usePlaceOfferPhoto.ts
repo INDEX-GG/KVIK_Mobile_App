@@ -19,13 +19,13 @@ export const usePlaceOfferPhoto = () => {
     const fileArrayLength = fileArray.length;
     setValue('photos', fileArrayLength ? fileArray : undefined);
     if (isFilesArrayLength && !importantPhoto) {
-      handleChangeImportantPhoto(fileArray[0])();
+      handleChangeImportantPhoto(fileArray[0].uri)();
       return;
     }
     if (isFilesArrayLength && importantPhoto) {
-      const findPhoto = fileArray.find((photo) => photo === importantPhoto);
+      const findPhoto = fileArray.find((photo) => photo.uri === importantPhoto);
       if (!findPhoto) {
-        handleChangeImportantPhoto(fileArray[0])();
+        handleChangeImportantPhoto(fileArray[0].uri)();
         return;
       }
     }

@@ -19,7 +19,13 @@ const DevicePicture: FC<IDevicePictureProps> = ({ isVisibleButton }) => {
   } = useDevicePicture(isVisibleButton);
 
   const renderItem = useCallback(
-    ({ item }) => <PictureItem key={item} pictureItem={item} />,
+    ({ item }) => (
+      <PictureItem
+        key={item}
+        pictureItem={item.uri}
+        pictureName={item.fileName}
+      />
+    ),
     []
   );
 

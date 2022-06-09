@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { fetchRefreshToken } from '../tokenSlice/asyncAction';
+import { fetchRefreshToken } from './asyncAction';
 
 export interface ITokenSlice {
   refreshToken: string;

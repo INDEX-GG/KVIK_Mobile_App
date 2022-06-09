@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RNCamera } from 'react-native-camera';
+import {IDevicePhoto} from "../../../types/types";
 
 interface IInitialState {
   isCameraOpen: boolean;
   cameraMethods: RNCamera | any;
-  fileArray: string[];
-  deviceGalleryImageArray: string[];
+  fileArray: IDevicePhoto[];
+  deviceGalleryImageArray: IDevicePhoto[];
   deviceGalleryLength: number;
 }
 
@@ -28,20 +29,20 @@ export const cameraSlice = createSlice({
     addCameraMethods(state, action: PayloadAction<RNCamera>) {
       state.cameraMethods = action.payload;
     },
-    addFileInArray(state, action: PayloadAction<string>) {
+    addFileInArray(state, action: PayloadAction<IDevicePhoto>) {
       state.fileArray = [...state.fileArray, action.payload];
     },
-    removeFileInArray(state, action: PayloadAction<string[]>) {
+    removeFileInArray(state, action: PayloadAction<IDevicePhoto[]>) {
       state.fileArray = action.payload;
     },
-    addDeviceGalleryArray(state, action: PayloadAction<string[]>) {
+    addDeviceGalleryArray(state, action: PayloadAction<IDevicePhoto[]>) {
       state.deviceGalleryImageArray = [
         ...state.deviceGalleryImageArray,
         ...action.payload,
       ];
       state.deviceGalleryLength += 100;
     },
-    addDeviceGalleryItem(state, action: PayloadAction<string>) {
+    addDeviceGalleryItem(state, action: PayloadAction<IDevicePhoto>) {
       state.deviceGalleryImageArray = [
         action.payload,
         ...state.deviceGalleryImageArray,

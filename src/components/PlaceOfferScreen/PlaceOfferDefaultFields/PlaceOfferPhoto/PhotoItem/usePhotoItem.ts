@@ -4,6 +4,7 @@ import { usePlaceOfferStore } from '../../../../../hooks/useReducerHook/usePlace
 
 export const usePhotoItem = (
   photo: PhotoType,
+  photoName: string,
   isDeleteMode: boolean,
   deleteArray: string[],
   handleAddPhotoInDeleteArray: HandleDeletePhotoItem

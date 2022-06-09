@@ -1,10 +1,23 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { FC } from 'react';
+import { View } from 'react-native';
+import { useSelectColorUIStyles } from './style';
+import ArrowRight from '../../assets/ArrowRightIcon.svg';
+import UbuntuTextUI from '../UbuntuTextUI/UbuntuTextUI';
 
-const SelectColorUI = () => {
+interface ISelectColorUIProps {}
+
+const SelectColorUI: FC<ISelectColorUIProps> = () => {
+  const styles = useSelectColorUIStyles();
+
   return (
-    <View>
-      <Text>1</Text>
+    <View style={styles.container}>
+      <View>
+        <UbuntuTextUI>Цвет</UbuntuTextUI>
+        <UbuntuTextUI>Серый</UbuntuTextUI>
+      </View>
+      <View>
+        <ArrowRight />
+      </View>
     </View>
   );
 };
