@@ -58,7 +58,7 @@ export const fetchUserLogin = createAsyncThunk(
   async (data: ILoginReq, thunkAPI) => {
     try {
       const response = await kvikAxios
-        .post<ILoginRespSuccess>(
+        .post<ILoginRespSuccess | 'ошибка api getUser, Invalid Token Data'>(
           'api/getUser?new',
           { id: data.id },
           {
@@ -69,6 +69,11 @@ export const fetchUserLogin = createAsyncThunk(
           }
         )
         .then((userModel) => userModel);
+
+      if (response.data === 'ошибка api getUser, Invalid Token Data') {
+        return await Keychain.resetGenericPassword().then((res) => res);
+      }
+
       return {
         userInfo: response.data,
         userId: data.id,

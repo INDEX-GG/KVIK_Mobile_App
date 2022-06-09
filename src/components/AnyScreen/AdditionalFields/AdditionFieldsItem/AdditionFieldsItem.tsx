@@ -16,6 +16,7 @@ import CheckListUI from '../../../../UI/CheckListUI/CheckListUI';
 import CheckBoxBooleanUI from '../../../../UI/CheckBoxBooleanUI/CheckBoxBooleanUI';
 import PeriodUI from '../../../../UI/PeriodUI/PeriodUI';
 import TimeTextListUI from '../../../../UI/TimeTextListUI/TimeTextListUI';
+import SelectColorUI from '../../../../UI/SelectColorUI/SelectColorUI';
 
 const AdditionFieldsItem: FC<IAdditionalFieldsItem> = (props) => {
   const {
@@ -27,15 +28,19 @@ const AdditionFieldsItem: FC<IAdditionalFieldsItem> = (props) => {
     isPeriod,
     isCheckList,
     isVisible,
+    isTextListRenderType,
   } = useAdditionFieldsItem(props);
 
   return isVisible ? (
     <>
-      {isTextList && (
-        <TextListUI
-          {...(props as IAdditionalFieldsItem & ITextListAdditionalFields)}
-        />
-      )}
+      {isTextList &&
+        (isTextListRenderType ? (
+          <SelectColorUI />
+        ) : (
+          <TextListUI
+            {...(props as IAdditionalFieldsItem & ITextListAdditionalFields)}
+          />
+        ))}
       {isText && (
         <TextUI {...(props as IAdditionalFieldsItem & ITextAdditionalFields)} />
       )}
