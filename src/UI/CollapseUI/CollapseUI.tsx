@@ -1,27 +1,13 @@
 import React, { FC } from 'react';
-import { TouchableOpacity } from 'react-native';
-import { useCollapseUI } from './useCollapseUI';
 
 interface ICollapseUIProps {
-  ContainerComponent: FC;
-  ChildrenComponent: FC;
+  isVisible: boolean;
+  children: React.ReactChildren | React.ReactNode;
 }
 
-const CollapseUI: FC<ICollapseUIProps> = ({
-  ContainerComponent,
-  ChildrenComponent,
+const CollapseUI: FC<ICollapseUIProps> = ({ isVisible, children
 }) => {
-  const { isVisible, handleToggleVisible } = useCollapseUI();
-  return (
-    <TouchableOpacity onPress={handleToggleVisible}>
-      <ContainerComponent />
-      {isVisible ? (
-        <>
-          <ChildrenComponent />
-        </>
-      ) : null}
-    </TouchableOpacity>
-  );
+  return <>{isVisible ? <>{children}</> : null}</>;
 };
 
 export default React.memo(CollapseUI);

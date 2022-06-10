@@ -7,6 +7,8 @@ import {
   sendNewAds,
   sendNewAdsPhoto,
 } from '../../../store/reducers/placeOfferSlice/asyncThunk/placeOferApi';
+import { cameraSlice } from '../../../store/reducers/cameraSlice/cameraSlice';
+import { placeOfferSlice } from '../../../store/reducers/placeOfferSlice/placeOfferSlice';
 
 export const usePlaceOfferAdditionalFields = () => {
   const { additionFields, aliasFull } = usePlaceOfferStore();
@@ -79,8 +81,8 @@ export const usePlaceOfferAdditionalFields = () => {
 
   useEffect(() => {
     return () => {
-      // dispatch(cameraSlice.actions.reset());
-      // dispatch(placeOfferSlice.actions.reset());
+      dispatch(cameraSlice.actions.reset());
+      dispatch(placeOfferSlice.actions.reset());
     };
   }, []);
 

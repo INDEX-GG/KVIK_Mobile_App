@@ -4,7 +4,7 @@ import { useAppSelector } from '../useAppSelector';
 import { useAppDispatch } from '../useAppDispatch';
 import { cameraSlice } from '../../store/reducers/cameraSlice/cameraSlice';
 import CameraRoll from '@react-native-community/cameraroll';
-import {IDevicePhoto} from "../../types/types";
+import { IDevicePhoto } from '../../types/types';
 
 export const useCameraStore = () => {
   const dispatch = useAppDispatch();
@@ -67,16 +67,28 @@ export const useCameraStore = () => {
           .then((response) => {
             console.log(response);
             if (response) {
-              // handleAddPhotoFileInArray(data.uri);
-              // handleChangeDeviceItem({uri: data.uri, fileName: ''});
-              // if (successCallback) {
-              //   successCallback();
-              // }
+              handleAddPhotoFileInArray({
+                uri: response,
+                fileName: 'newPhoto.jpeg',
+              });
+              handleChangeDeviceItem({
+                uri: response,
+                fileName: 'newPhoto.jpeg',
+              });
+              if (successCallback) {
+                successCallback();
+              }
             }
           })
           .catch(() => {
-            // handleAddPhotoFileInArray(data.uri);
-            // handleChangeDeviceItem(data.uri);
+            handleAddPhotoFileInArray({
+              uri: data.uri,
+              fileName: 'newPhoto.jpeg',
+            });
+            handleChangeDeviceItem({
+              uri: data.uri,
+              fileName: 'newPhoto.jpeg',
+            });
             if (successCallback) {
               successCallback();
             }

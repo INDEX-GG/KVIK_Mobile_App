@@ -2,11 +2,11 @@ import React, { FC } from 'react';
 import {
   IAdditionalFieldsItem,
   ICheckListUIProps,
+  IColorUIProps,
   IPeriodUIProps,
-  ITextAdditionalFields,
-  ITextListAdditionalFields,
   ITextListUIProps,
-  ITextNumberAdditionalFields,
+  ITextNumberUIProps,
+  ITextUIProps,
 } from '../../../../models/IAdditionalFieldsModel';
 import TextListUI from '../../../../UI/TextListUI/TextListUI';
 import TextUI from '../../../../UI/TextUI/TextUI';
@@ -31,35 +31,26 @@ const AdditionFieldsItem: FC<IAdditionalFieldsItem> = (props) => {
     isTextListRenderType,
   } = useAdditionFieldsItem(props);
 
-  return true ? (
+  return isVisible ? (
     <>
       {isTextList &&
         (isTextListRenderType ? (
-          <SelectColorUI />
+          <SelectColorUI {...(props as IColorUIProps)} />
         ) : (
-          // <TextListUI
-          //   {...(props as IAdditionalFieldsItem & ITextListAdditionalFields)}
-          // />
-          null
+          <TextListUI {...(props as ITextListUIProps)} />
         ))}
-      {/*{isText && (*/}
-      {/*  <TextUI {...(props as IAdditionalFieldsItem & ITextAdditionalFields)} />*/}
-      {/*)}*/}
-      {/*{isNumber && (*/}
-      {/*  <TextNumberUI*/}
-      {/*    {...(props as IAdditionalFieldsItem & ITextNumberAdditionalFields)}*/}
-      {/*  />*/}
-      {/*)}*/}
-      {/*{isCheckList && <CheckListUI {...(props as ICheckListUIProps)} />}*/}
-      {/*{isBoolean && (*/}
-      {/*  <CheckBoxBooleanUI*/}
-      {/*    alias={props.alias}*/}
-      {/*    title={props.title}*/}
-      {/*    required={props.required}*/}
-      {/*  />*/}
-      {/*)}*/}
-      {/*{isPeriod && <PeriodUI {...(props as IPeriodUIProps)} />}*/}
-      {/*{isTime && <TimeTextListUI {...(props as ITextListUIProps)} />}*/}
+      {isText && <TextUI {...(props as ITextUIProps)} />}
+      {isNumber && <TextNumberUI {...(props as ITextNumberUIProps)} />}
+      {isCheckList && <CheckListUI {...(props as ICheckListUIProps)} />}
+      {isPeriod && <PeriodUI {...(props as IPeriodUIProps)} />}
+      {isTime && <TimeTextListUI {...(props as ITextListUIProps)} />}
+      {isBoolean && (
+        <CheckBoxBooleanUI
+          alias={props.alias}
+          title={props.title}
+          required={props.required}
+        />
+      )}
     </>
   ) : null;
 };

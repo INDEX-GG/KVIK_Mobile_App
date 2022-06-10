@@ -29,3 +29,9 @@ export interface IDevicePhoto {
   fileName: string;
   uri: string;
 }
+
+export interface IColors {
+  id: number;
+  name: string;
+  value: string;
+}

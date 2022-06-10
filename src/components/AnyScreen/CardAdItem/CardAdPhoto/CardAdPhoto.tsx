@@ -19,23 +19,22 @@ const CardAdPhoto: FC<ICardAdPhotoProps> = ({ photos, adId, onPress }) => {
     [adId]
   );
 
-   const remainingPhotosCount = useMemo(() => {
+  const remainingPhotosCount = useMemo(() => {
     if (Array.isArray(photos) && Array.isArray(photosArr)) {
       return photos.length - photosArr.length;
     }
     return 0;
   }, [photos, photosArr]);
 
-
   return (
     <View style={styles.img}>
-      <CustomSwiper
-        photos={photosArr}
-        remainingPhotosCount={remainingPhotosCount}
-        visibleLastSlide={true}
-        onPressSlide={onPress}
-      />
-      {/*<ImageUI photo={photosArr[0]} />*/}
+      {/*<CustomSwiper*/}
+      {/*  photos={photosArr}*/}
+      {/*  remainingPhotosCount={remainingPhotosCount}*/}
+      {/*  visibleLastSlide={true}*/}
+      {/*  onPressSlide={onPress}*/}
+      {/*/>*/}
+      <ImageUI photo={photosArr[0]} />
     </View>
   );
 };
