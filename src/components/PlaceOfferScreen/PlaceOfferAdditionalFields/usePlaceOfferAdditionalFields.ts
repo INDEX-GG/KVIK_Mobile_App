@@ -3,7 +3,12 @@ import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { useUserStore } from '../../../hooks/useReducerHook/useUserStore';
-import { sendNewAds } from '../../../store/reducers/placeOfferSlice/asyncThunk/placeOferApi';
+import {
+  sendNewAds,
+  sendNewAdsPhoto,
+} from '../../../store/reducers/placeOfferSlice/asyncThunk/placeOferApi';
+import { cameraSlice } from '../../../store/reducers/cameraSlice/cameraSlice';
+import { placeOfferSlice } from '../../../store/reducers/placeOfferSlice/placeOfferSlice';
 
 export const usePlaceOfferAdditionalFields = () => {
   const { additionFields, aliasFull } = usePlaceOfferStore();
@@ -59,16 +64,25 @@ export const usePlaceOfferAdditionalFields = () => {
         subcategory: aliasFull.split(',').reverse()[0],
         title,
         trade,
-        userId: userId,
+        user_id: userId,
       };
-      dispatch(sendNewAds(sendObj));
+      dispatch(sendNewAds(sendObj)).then((r) => {
+        const response = r.payload as { id: number };
+        if (response.id) {
+          dispatch(sendNewAdsPhoto({ userId, postId: response.id })).then(
+            (res) => {
+              console.log(res);
+            }
+          );
+        }
+      });
     }
   };
 
   useEffect(() => {
     return () => {
-      // dispatch(cameraSlice.actions.reset());
-      // dispatch(placeOfferSlice.actions.reset());
+      dispatch(cameraSlice.actions.reset());
+      dispatch(placeOfferSlice.actions.reset());
     };
   }, []);
 

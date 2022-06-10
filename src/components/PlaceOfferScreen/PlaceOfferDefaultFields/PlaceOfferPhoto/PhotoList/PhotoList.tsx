@@ -4,9 +4,10 @@ import PhotoItem from '../PhotoItem/PhotoItem';
 import { usePhotoListStyles } from './styles';
 import { usePhotoList } from './usePhotoList';
 import BasketIcon from '../../../../../assets/BacketIcon.svg';
+import { IDevicePhoto } from '../../../../../types/types';
 
 interface IPhotoListProps {
-  photosArray: string[];
+  photosArray: IDevicePhoto[];
   onPressPhotoPlaceholder: () => void;
 }
 
@@ -27,7 +28,8 @@ const PhotoList: FC<IPhotoListProps> = ({
     ({ item }) => (
       <PhotoItem
         key={item}
-        photo={item}
+        photo={item.uri}
+        photoName={item.fileName}
         isDeleteMode={isDeleteMode}
         deleteArray={deleteArray}
         handleAddPhotoInDeleteArray={handleAddPhotoInDeleteArray}
@@ -41,7 +43,7 @@ const PhotoList: FC<IPhotoListProps> = ({
   return (
     <View style={styles.container}>
       <FlatList
-        data={[...photosArray, 'lastPhoto']}
+        data={[...photosArray, { uri: 'lastPhoto', fileName: 'placeholder' }]}
         numColumns={3}
         renderItem={renderItem}
       />

@@ -10,6 +10,7 @@ import SuccessMarkIcon from '../../../../../assets/SuccesMark.svg';
 
 const PhotoItem: FC<IPhotoItemProps> = ({
   photo,
+  photoName,
   deleteArray,
   isDeleteMode,
   onPressLastPhoto,
@@ -28,6 +29,7 @@ const PhotoItem: FC<IPhotoItemProps> = ({
     handleChangeImportantPhoto,
   } = usePhotoItem(
     photo,
+    photoName,
     isDeleteMode,
     deleteArray,
     handleAddPhotoInDeleteArray
@@ -75,6 +77,7 @@ const PhotoItem: FC<IPhotoItemProps> = ({
       )}
       <PhotoItemModal
         photo={photo}
+        photoName={photoName}
         isImportantPhoto={isImportantPhoto}
         isVisibleModal={isVisibleModal}
         handleChangeImportantPhoto={handleChangeImportantPhoto(photo)}

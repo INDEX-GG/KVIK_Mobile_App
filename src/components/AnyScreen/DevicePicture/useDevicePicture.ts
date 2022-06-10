@@ -22,9 +22,10 @@ export const useDevicePicture = (isVisibleButton: boolean) => {
 
   const handleChangeGallery = (params: CameraRoll.GetPhotosParams) => {
     CameraRoll.getPhotos(params).then((response) => {
-      const filterCameraPhoto = response.edges.map(
-        (item) => item.node.image.uri
-      );
+      const filterCameraPhoto = response.edges.map((item) => ({
+        uri: item.node.image.uri,
+        fileName: item.node.image.filename || 'defaultName.jpeg',
+      }));
       handleChangeDeviceGallery(filterCameraPhoto);
     });
   };

@@ -24,3 +24,14 @@ export type onChangeText = (text: string) => void;
 export type NumberType = 'int' | 'float';
 
 export type textWeight = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
+
+export interface IDevicePhoto {
+  fileName: string;
+  uri: string;
+}
+
+export interface IColors {
+  id: number;
+  name: string;
+  value: string;
+}

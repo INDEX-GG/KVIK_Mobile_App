@@ -1,4 +1,5 @@
 import { TextInputProps, ViewStyle } from 'react-native';
+import { IColors } from '../types/types';
 
 export type PlaceOfferAdditionalFields =
   | 'text_list'
@@ -63,6 +64,15 @@ export interface ITextListAdditionalFields {
   json?: string;
 }
 
+export interface IColorAdditionalFields {
+  text_list_search_type?: number;
+  text_list_filter_type?: number;
+  text_list_rendering_type?: number;
+  text_list_values: IColors[];
+  dependencies?: string[];
+  json?: string;
+}
+
 export interface IAdditionalFieldsItem {
   alias: string;
   type: PlaceOfferAdditionalFields;
@@ -121,3 +131,5 @@ export type ITextListUIProps = ITextListAdditionalFields &
   ITextListIsCheckList &
   ITextListIsPeriod &
   ITextListIsTime;
+
+export type IColorUIProps = IAdditionalFieldsItem & IColorAdditionalFields;

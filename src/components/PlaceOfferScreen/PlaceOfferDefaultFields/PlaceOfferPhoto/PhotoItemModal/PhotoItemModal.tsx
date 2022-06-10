@@ -8,6 +8,7 @@ import ArrowLeft from '../../../../../assets/ModalCloseIcon.svg';
 
 interface IPhotoItemModalProps {
   photo: string;
+  photoName: string;
   isVisibleModal: boolean;
   isImportantPhoto: boolean;
   handleChangeImportantPhoto: () => void;

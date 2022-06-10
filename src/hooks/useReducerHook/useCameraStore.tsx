@@ -4,6 +4,7 @@ import { useAppSelector } from '../useAppSelector';
 import { useAppDispatch } from '../useAppDispatch';
 import { cameraSlice } from '../../store/reducers/cameraSlice/cameraSlice';
 import CameraRoll from '@react-native-community/cameraroll';
+import { IDevicePhoto } from '../../types/types';
 
 export const useCameraStore = () => {
   const dispatch = useAppDispatch();
@@ -24,26 +25,33 @@ export const useCameraStore = () => {
     dispatch(cameraSlice.actions.toggleCamera());
   };
 
-  const handleChangeDeviceGallery = (photoFiles: string[]) => {
+  const handleChangeDeviceGallery = (photoFiles: IDevicePhoto[]) => {
     dispatch(cameraSlice.actions.addDeviceGalleryArray(photoFiles));
   };
 
-  const handleChangeDeviceItem = (photoFiles: string) => {
+  const handleChangeDeviceItem = (photoFiles: IDevicePhoto) => {
     dispatch(cameraSlice.actions.addDeviceGalleryItem(photoFiles));
   };
 
-  const handleAddPhotoFileInArray = (photoFile: string) => {
-    dispatch(cameraSlice.actions.addFileInArray(photoFile));
+  const handleAddPhotoFileInArray = (photo: IDevicePhoto) => {
+    dispatch(
+      cameraSlice.actions.addFileInArray({
+        uri: photo.uri,
+        fileName: photo.fileName,
+      })
+    );
   };
 
-  const handleRemovePhotoFileInArray = (photoFile: string) => {
+  const handleRemovePhotoFileInArray = (photo: IDevicePhoto) => {
     if (Array.isArray(fileArray)) {
-      const filterFilesArray = fileArray.filter((item) => item !== photoFile);
+      const filterFilesArray = fileArray.filter(
+        (item) => item.uri !== photo.uri
+      );
       dispatch(cameraSlice.actions.removeFileInArray(filterFilesArray));
     }
   };
 
-  const handleDeletePhotosInFileArray = (newFileArray: string[]) => {
+  const handleDeletePhotosInFileArray = (newFileArray: IDevicePhoto[]) => {
     dispatch(cameraSlice.actions.removeFileInArray(newFileArray));
   };
 
@@ -57,17 +65,30 @@ export const useCameraStore = () => {
         const data = await camera.takePictureAsync(options);
         CameraRoll.save(data.uri, { type: 'photo', album: 'Camera' })
           .then((response) => {
+            console.log(response);
             if (response) {
-              handleAddPhotoFileInArray(data.uri);
-              handleChangeDeviceItem(data.uri);
+              handleAddPhotoFileInArray({
+                uri: response,
+                fileName: 'newPhoto.jpeg',
+              });
+              handleChangeDeviceItem({
+                uri: response,
+                fileName: 'newPhoto.jpeg',
+              });
               if (successCallback) {
                 successCallback();
               }
             }
           })
           .catch(() => {
-            handleAddPhotoFileInArray(data.uri);
-            handleChangeDeviceItem(data.uri);
+            handleAddPhotoFileInArray({
+              uri: data.uri,
+              fileName: 'newPhoto.jpeg',
+            });
+            handleChangeDeviceItem({
+              uri: data.uri,
+              fileName: 'newPhoto.jpeg',
+            });
             if (successCallback) {
               successCallback();
             }

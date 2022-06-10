@@ -3,6 +3,7 @@ export type HandleDeletePhotoItem = (file: string) => () => void;
 
 export interface IPhotoItemProps {
   photo: PhotoType;
+  photoName: string;
   isDeleteMode: boolean;
   deleteArray: string[];
   handleAddPhotoInDeleteArray: HandleDeletePhotoItem;
